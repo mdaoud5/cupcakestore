@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "416461349439",
+    "project_id": "cupcakestore-90629",
+    "storage_bucket": "cupcakestore-90629.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416461349439:android:378455eba9f1745ab34e8a",
+        "android_client_info": {
+          "package_name": "com.mycompany.cupcakestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-wADwedt2WD9I1NT0OQgxXZcbxTZPHCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
