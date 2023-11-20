@@ -52,3 +52,49 @@ double? addDliveryFee(
 ) {
   return fee + productsSum;
 }
+
+List<ProductsRecord> chooseList(
+  List<ProductsRecord> allProductList,
+  List<ProductsRecord> searchList,
+) {
+  return searchList.length > 0 ? searchList : allProductList;
+}
+
+int getDay(DateTime date) {
+  return date.day;
+}
+
+int getYear(DateTime date) {
+  return date.year;
+}
+
+String getMonth(DateTime date) {
+  // return the month as string from date
+  return DateFormat('MMMM').format(date);
+}
+
+Color getColor(String status) {
+  switch (status) {
+    case "Preparação":
+      return Color(0xFFFFF9E9);
+    case "Cancelado":
+      return Color(0xFFFEF0F1);
+    case "Finalizado":
+      return Color(0xFFE7FFF1);
+    default:
+      return Color(0xFFFFF9E9);
+  }
+}
+
+Color getColorStatus(String status) {
+  switch (status) {
+    case "Preparação":
+      return Color(0xFF8F7010);
+    case "Cancelado":
+      return Color(0xFFF4444B);
+    case "Finalizado":
+      return Color(0xFF08C755);
+    default:
+      return Color(0xFF8F7010);
+  }
+}

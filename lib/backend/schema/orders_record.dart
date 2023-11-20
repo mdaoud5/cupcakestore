@@ -24,11 +24,32 @@ class OrdersRecord extends FirestoreRecord {
   DateTime? get orderCreatedTime => _orderCreatedTime;
   bool hasOrderCreatedTime() => _orderCreatedTime != null;
 
+  // "order_value" field.
+  double? _orderValue;
+  double get orderValue => _orderValue ?? 0.0;
+  bool hasOrderValue() => _orderValue != null;
+
+  // "order_number" field.
+  int? _orderNumber;
+  int get orderNumber => _orderNumber ?? 0;
+  bool hasOrderNumber() => _orderNumber != null;
+
+  // "order_items" field.
+  List<CartItemTypeStruct>? _orderItems;
+  List<CartItemTypeStruct> get orderItems => _orderItems ?? const [];
+  bool hasOrderItems() => _orderItems != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
     _orderStatus = snapshotData['order_Status'] as String?;
     _orderCreatedTime = snapshotData['order_created_time'] as DateTime?;
+    _orderValue = castToType<double>(snapshotData['order_value']);
+    _orderNumber = castToType<int>(snapshotData['order_number']);
+    _orderItems = getStructList(
+      snapshotData['order_items'],
+      CartItemTypeStruct.fromMap,
+    );
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -72,11 +93,15 @@ class OrdersRecord extends FirestoreRecord {
 Map<String, dynamic> createOrdersRecordData({
   String? orderStatus,
   DateTime? orderCreatedTime,
+  double? orderValue,
+  int? orderNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'order_Status': orderStatus,
       'order_created_time': orderCreatedTime,
+      'order_value': orderValue,
+      'order_number': orderNumber,
     }.withoutNulls,
   );
 
@@ -88,13 +113,22 @@ class OrdersRecordDocumentEquality implements Equality<OrdersRecord> {
 
   @override
   bool equals(OrdersRecord? e1, OrdersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.orderStatus == e2?.orderStatus &&
-        e1?.orderCreatedTime == e2?.orderCreatedTime;
+        e1?.orderCreatedTime == e2?.orderCreatedTime &&
+        e1?.orderValue == e2?.orderValue &&
+        e1?.orderNumber == e2?.orderNumber &&
+        listEquality.equals(e1?.orderItems, e2?.orderItems);
   }
 
   @override
-  int hash(OrdersRecord? e) =>
-      const ListEquality().hash([e?.orderStatus, e?.orderCreatedTime]);
+  int hash(OrdersRecord? e) => const ListEquality().hash([
+        e?.orderStatus,
+        e?.orderCreatedTime,
+        e?.orderValue,
+        e?.orderNumber,
+        e?.orderItems
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is OrdersRecord;

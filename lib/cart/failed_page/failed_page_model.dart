@@ -1,15 +1,21 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'nav_bar_widget.dart' show NavBarWidget;
+import 'failed_page_widget.dart' show FailedPageWidget;
 import 'package:flutter/material.dart';
 
-class NavBarModel extends FlutterFlowModel<NavBarWidget> {
+class FailedPageModel extends FlutterFlowModel<FailedPageWidget> {
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
   /// Action blocks are added here.
 

@@ -781,22 +781,17 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
 
                                           await UsersRecord.collection
                                               .doc(user.uid)
-                                              .update({
-                                            ...createUsersRecordData(
-                                              phoneNumber:
-                                                  _model.celularController.text,
-                                              displayName: _model
-                                                  .nomeComletoController.text,
-                                              cpf: int.tryParse(
-                                                  _model.cpfController.text),
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'created_time': FieldValue
-                                                    .serverTimestamp(),
-                                              },
-                                            ),
-                                          });
+                                              .update(createUsersRecordData(
+                                                email: _model
+                                                    .emailAddressController
+                                                    .text,
+                                                displayName: _model
+                                                    .nomeComletoController.text,
+                                                phoneNumber: _model
+                                                    .celularController.text,
+                                                cpf: int.tryParse(
+                                                    _model.cpfController.text),
+                                              ));
 
                                           context.pushNamedAuth(
                                               'Entrar', context.mounted);

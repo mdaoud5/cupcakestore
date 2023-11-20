@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -14,12 +15,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _stautsList = prefs.getStringList('ff_stautsList') ?? _stautsList;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   double _productTotal = 0;
   double get productTotal => _productTotal;
@@ -72,6 +80,41 @@ class FFAppState extends ChangeNotifier {
   double get total => _total;
   set total(double value) {
     _total = value;
+  }
+
+  List<String> _stautsList = ['Cancelado', 'Finalizado'];
+  List<String> get stautsList => _stautsList;
+  set stautsList(List<String> value) {
+    _stautsList = value;
+    prefs.setStringList('ff_stautsList', value);
+  }
+
+  void addToStautsList(String value) {
+    _stautsList.add(value);
+    prefs.setStringList('ff_stautsList', _stautsList);
+  }
+
+  void removeFromStautsList(String value) {
+    _stautsList.remove(value);
+    prefs.setStringList('ff_stautsList', _stautsList);
+  }
+
+  void removeAtIndexFromStautsList(int index) {
+    _stautsList.removeAt(index);
+    prefs.setStringList('ff_stautsList', _stautsList);
+  }
+
+  void updateStautsListAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _stautsList[index] = updateFn(_stautsList[index]);
+    prefs.setStringList('ff_stautsList', _stautsList);
+  }
+
+  void insertAtIndexInStautsList(int index, String value) {
+    _stautsList.insert(index, value);
+    prefs.setStringList('ff_stautsList', _stautsList);
   }
 }
 

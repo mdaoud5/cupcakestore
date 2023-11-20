@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:carousel_slider/carousel_slider.dart';
@@ -7,10 +8,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for SearchInputText widget.
+  FocusNode? searchInputTextFocusNode;
+  TextEditingController? searchInputTextController;
+  String? Function(BuildContext, String?)? searchInputTextControllerValidator;
+  List<ProductsRecord> simpleSearchResults = [];
   // State field(s) for Carousel widget.
   CarouselController? carouselController;
 
@@ -24,8 +26,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    searchInputTextFocusNode?.dispose();
+    searchInputTextController?.dispose();
   }
 
   /// Action blocks are added here.

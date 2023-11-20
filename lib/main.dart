@@ -136,6 +136,9 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': const HomePageWidget(),
       'cart': const CartWidget(),
+      'searchPage': const SearchPageWidget(),
+      'ordersPage': const OrdersPageWidget(),
+      'profile': const ProfileWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -201,7 +204,9 @@ class _NavBarPageState extends State<NavBarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    currentIndex == 1 ? Icons.home : FontAwesomeIcons.cartPlus,
+                    currentIndex == 1
+                        ? FontAwesomeIcons.cartPlus
+                        : FontAwesomeIcons.cartPlus,
                     color: currentIndex == 1
                         ? const Color(0xFFFF7700)
                         : FlutterFlowTheme.of(context).secondaryText,
@@ -212,6 +217,80 @@ class _NavBarPageState extends State<NavBarPage> {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: currentIndex == 1
+                          ? const Color(0xFFFF7700)
+                          : FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 11.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.search_rounded,
+                    color: currentIndex == 2
+                        ? const Color(0xFFFF7700)
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                  Text(
+                    'Pesquisar',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: currentIndex == 2
+                          ? const Color(0xFFFF7700)
+                          : FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 11.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.list_alt_rounded,
+                    color: currentIndex == 3
+                        ? const Color(0xFFFF7700)
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                  Text(
+                    'Pedidos',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: currentIndex == 3
+                          ? const Color(0xFFFF7700)
+                          : FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 11.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    currentIndex == 4
+                        ? Icons.account_circle_sharp
+                        : Icons.account_circle_outlined,
+                    color: currentIndex == 4
+                        ? const Color(0xFFFF7700)
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    size: currentIndex == 4 ? 24.0 : 24.0,
+                  ),
+                  Text(
+                    'Prfil',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: currentIndex == 4
                           ? const Color(0xFFFF7700)
                           : FlutterFlowTheme.of(context).secondaryText,
                       fontSize: 11.0,

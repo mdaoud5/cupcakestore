@@ -124,6 +124,50 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'paymentPage',
           path: '/paymentPage',
           builder: (context, params) => const PaymentPageWidget(),
+        ),
+        FFRoute(
+          name: 'searchPage',
+          path: '/searchPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'searchPage')
+              : const SearchPageWidget(),
+        ),
+        FFRoute(
+          name: 'favoritePage',
+          path: '/favoritePage',
+          builder: (context, params) => const FavoritePageWidget(),
+        ),
+        FFRoute(
+          name: 'ordersPage',
+          path: '/ordersPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'ordersPage')
+              : const OrdersPageWidget(),
+        ),
+        FFRoute(
+          name: 'orderItems',
+          path: '/orderItems',
+          builder: (context, params) => OrderItemsWidget(
+            orderRef: params.getParam('orderRef', ParamType.DocumentReference,
+                false, ['users', 'Orders']),
+          ),
+        ),
+        FFRoute(
+          name: 'successPage',
+          path: '/successPage',
+          builder: (context, params) => const SuccessPageWidget(),
+        ),
+        FFRoute(
+          name: 'failedPage',
+          path: '/failedPage',
+          builder: (context, params) => const FailedPageWidget(),
+        ),
+        FFRoute(
+          name: 'profile',
+          path: '/profile',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'profile')
+              : const ProfileWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

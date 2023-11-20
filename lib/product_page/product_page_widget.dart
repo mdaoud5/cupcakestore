@@ -96,69 +96,207 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 4.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 20.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.00, 0.00),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.safePop();
-                                              },
-                                              child: Icon(
-                                                Icons.arrow_back_ios_new,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 36.0,
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
+                      child: Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.00, 0.00),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 10.0, 0.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.safePop();
+                                                },
+                                                child: Icon(
+                                                  Icons.arrow_back_ios_new,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 36.0,
+                                                ),
                                               ),
                                             ),
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.00, 0.00),
+                                              child: Container(
+                                                width: 266.0,
+                                                height: 100.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                                alignment: const AlignmentDirectional(
+                                                    0.00, 0.00),
+                                                child: Text(
+                                                  productPageProductsRecord
+                                                      .productName,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        fontSize: 18.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 10.0, 10.0, 10.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              productPageProductsRecord
+                                                  .productLink,
+                                              'https://images.unsplash.com/photo-1603532648955-039310d9ed75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw2fHxjdXBjYWtlfGVufDB8fHx8MTY5OTAxNjUxMnww&ixlib=rb-4.0.3&q=80&w=1080',
+                                            ),
+                                            width: double.infinity,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.25,
+                                            fit: BoxFit.cover,
                                           ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.00, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 10.0, 0.0),
+                                          child: Text(
+                                            valueOrDefault<String>(
+                                              productPageProductsRecord
+                                                  .productDisc,
+                                              'Product discribtion',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
                                           Align(
                                             alignment: const AlignmentDirectional(
                                                 0.00, 0.00),
-                                            child: Container(
-                                              width: 266.0,
-                                              height: 100.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                              ),
-                                              alignment: const AlignmentDirectional(
-                                                  0.00, 0.00),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
                                               child: Text(
-                                                productPageProductsRecord
-                                                    .productName,
+                                                'Quantidade',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 15.0, 0.0),
+                                            child: RichText(
+                                              textScaleFactor:
+                                                  MediaQuery.of(context)
+                                                      .textScaleFactor,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: 'Preço: ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 18.0,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        valueOrDefault<String>(
+                                                      formatNumber(
+                                                        productPageProductsRecord
+                                                            .productValue,
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .commaDecimal,
+                                                        currency: 'R\$',
+                                                      ),
+                                                      '0',
+                                                    ),
+                                                    style: const TextStyle(
+                                                      fontSize: 18.0,
+                                                    ),
+                                                  )
+                                                ],
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -167,9 +305,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
-                                                          fontSize: 18.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                          fontSize: 16.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -182,384 +318,261 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 10.0, 10.0, 10.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            productPageProductsRecord
-                                                .productLink,
-                                            'https://images.unsplash.com/photo-1603532648955-039310d9ed75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw2fHxjdXBjYWtlfGVufDB8fHx8MTY5OTAxNjUxMnww&ixlib=rb-4.0.3&q=80&w=1080',
-                                          ),
-                                          width: double.infinity,
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              0.25,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 10.0, 0.0),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            productPageProductsRecord
-                                                .productDisc,
-                                            'Product discribtion',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.00, 0.00),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 10.0, 10.0, 10.0),
-                                            child: Text(
-                                              'Quantidade',
-                                              style:
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 160.0,
+                                            height: 50.0,
+                                            decoration: BoxDecoration(
+                                              color:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
+                                                      .secondaryBackground,
+                                              shape: BoxShape.rectangle,
+                                              border: Border.all(
+                                                color: const Color(0x00E0E3E7),
+                                                width: 0.0,
+                                              ),
+                                            ),
+                                            child: FlutterFlowCountController(
+                                              decrementIconBuilder: (enabled) =>
+                                                  Icon(
+                                                Icons.highlight_off,
+                                                color: enabled
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                size: 48.0,
+                                              ),
+                                              incrementIconBuilder: (enabled) =>
+                                                  Icon(
+                                                Icons.add_circle,
+                                                color: enabled
+                                                    ? const Color(0xFFFF7700)
+                                                    : FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                size: 48.0,
+                                              ),
+                                              countBuilder: (count) => Text(
+                                                count.toString(),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleLargeFamily,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLargeFamily),
+                                                        ),
+                                              ),
+                                              count: _model
+                                                  .countControllerValue ??= 1,
+                                              updateCount: (count) async {
+                                                setState(() => _model
+                                                        .countControllerValue =
+                                                    count);
+                                                FFAppState().productTotal =
+                                                    productPageProductsRecord
+                                                            .productValue *
+                                                        _model
+                                                            .countControllerValue!;
+                                              },
+                                              stepSize: 1,
+                                              minimum: 1,
+                                              contentPadding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 10.0, 0.0),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 15.0, 0.0),
-                                          child: RichText(
-                                            textScaleFactor:
-                                                MediaQuery.of(context)
-                                                    .textScaleFactor,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: 'Preço: ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        fontSize: 18.0,
-                                                        fontWeight:
-                                                            FontWeight.w800,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                                ),
-                                                TextSpan(
-                                                  text: valueOrDefault<String>(
-                                                    formatNumber(
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 15.0, 0.0),
+                                            child: RichText(
+                                              textScaleFactor:
+                                                  MediaQuery.of(context)
+                                                      .textScaleFactor,
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: formatNumber(
                                                       productPageProductsRecord
-                                                          .productValue,
+                                                              .productValue *
+                                                          _model
+                                                              .countControllerValue!,
                                                       formatType:
                                                           FormatType.decimal,
                                                       decimalType: DecimalType
                                                           .commaDecimal,
                                                       currency: 'R\$',
                                                     ),
-                                                    '0',
-                                                  ),
-                                                  style: const TextStyle(
-                                                    fontSize: 18.0,
-                                                  ),
-                                                )
-                                              ],
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        fontSize: 16.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 24.0,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  )
+                                                ],
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          fontSize: 24.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          width: 160.0,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            shape: BoxShape.rectangle,
-                                            border: Border.all(
-                                              color: const Color(0x00E0E3E7),
-                                              width: 0.0,
-                                            ),
-                                          ),
-                                          child: FlutterFlowCountController(
-                                            decrementIconBuilder: (enabled) =>
-                                                Icon(
-                                              Icons.highlight_off,
-                                              color: enabled
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .secondaryText
-                                                  : FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              size: 48.0,
-                                            ),
-                                            incrementIconBuilder: (enabled) =>
-                                                Icon(
-                                              Icons.add_circle,
-                                              color: enabled
-                                                  ? const Color(0xFFFF7700)
-                                                  : FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              size: 48.0,
-                                            ),
-                                            countBuilder: (count) => Text(
-                                              count.toString(),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleLargeFamily,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLargeFamily),
-                                                      ),
-                                            ),
-                                            count: _model
-                                                .countControllerValue ??= 1,
-                                            updateCount: (count) async {
-                                              setState(() =>
-                                                  _model.countControllerValue =
-                                                      count);
-                                              FFAppState().productTotal =
-                                                  productPageProductsRecord
-                                                          .productValue *
-                                                      _model
-                                                          .countControllerValue!;
-                                            },
-                                            stepSize: 1,
-                                            minimum: 1,
-                                            contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 15.0, 0.0),
-                                          child: RichText(
-                                            textScaleFactor:
-                                                MediaQuery.of(context)
-                                                    .textScaleFactor,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: formatNumber(
-                                                    productPageProductsRecord
-                                                            .productValue *
-                                                        _model
-                                                            .countControllerValue!,
-                                                    formatType:
-                                                        FormatType.decimal,
-                                                    decimalType: DecimalType
-                                                        .commaDecimal,
-                                                    currency: 'R\$',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        fontSize: 24.0,
-                                                        fontWeight:
-                                                            FontWeight.w800,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                                )
-                                              ],
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        fontSize: 24.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.00, 0.00),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      if (functions.isCartItem(
-                                              widget.productRef!,
-                                              FFAppState()
-                                                  .cartItemList
-                                                  .toList()) ==
-                                          true) {
-                                        setState(() {
-                                          FFAppState()
-                                              .updateCartItemListAtIndex(
-                                            functions.findIndexCart(
+                                Align(
+                                  alignment: const AlignmentDirectional(0.00, 0.00),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 10.0, 10.0, 10.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        if (functions.isCartItem(
                                                 widget.productRef!,
                                                 FFAppState()
                                                     .cartItemList
-                                                    .toList())!,
-                                            (e) => e
-                                              ..incrementQuantity(
-                                                  _model.countControllerValue!),
-                                          );
-                                        });
-                                      } else {
-                                        setState(() {
-                                          FFAppState().addToCartItemList(
-                                              CartItemTypeStruct(
-                                            cartItem: productPageProductsRecord
-                                                .reference,
-                                            quantity:
-                                                _model.countControllerValue,
-                                            valorTotal:
-                                                productPageProductsRecord
-                                                    .productValue,
-                                          ));
-                                        });
-                                      }
+                                                    .toList()) ==
+                                            true) {
+                                          setState(() {
+                                            FFAppState()
+                                                .updateCartItemListAtIndex(
+                                              functions.findIndexCart(
+                                                  widget.productRef!,
+                                                  FFAppState()
+                                                      .cartItemList
+                                                      .toList())!,
+                                              (e) => e
+                                                ..incrementQuantity(_model
+                                                    .countControllerValue!),
+                                            );
+                                          });
+                                        } else {
+                                          setState(() {
+                                            FFAppState().addToCartItemList(
+                                                CartItemTypeStruct(
+                                              cartItem:
+                                                  productPageProductsRecord
+                                                      .reference,
+                                              quantity:
+                                                  _model.countControllerValue,
+                                              valorTotal:
+                                                  productPageProductsRecord
+                                                      .productValue,
+                                            ));
+                                          });
+                                        }
 
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'O produto foi adicionado à sacola',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              const Duration(milliseconds: 1000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-                                    },
-                                    text: 'Adicionar ao carrinho',
-                                    icon: const Icon(
-                                      Icons.add_shopping_cart,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: 300.0,
-                                      height: 49.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 12.0, 24.0, 12.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0xFFFF7700),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'O produto foi adicionado à sacola',
+                                              style: TextStyle(
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 1000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
                                           ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        );
+                                      },
+                                      text: 'Adicionar ao carrinho',
+                                      icon: const Icon(
+                                        Icons.add_shopping_cart,
+                                        size: 15.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      options: FFButtonOptions(
+                                        width: 300.0,
+                                        height: 49.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 12.0, 24.0, 12.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: const Color(0xFFFF7700),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

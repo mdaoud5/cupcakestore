@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/components/cart_item/cart_item_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'cart_widget.dart' show CartWidget;
@@ -15,6 +16,8 @@ class CartModel extends FlutterFlowModel<CartWidget> {
   String? Function(BuildContext, String?)? cUPOMTextFieldControllerValidator;
   // State field(s) for PlacePicker widget.
   var placePickerValue = const FFPlace();
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  OrdersRecord? order;
 
   /// Initialization and disposal methods.
 
