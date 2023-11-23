@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'cart_item_model.dart';
 export 'cart_item_model.dart';
@@ -40,6 +41,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CartItemModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -59,8 +62,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         Expanded(
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            color: FlutterFlowTheme.of(context).primaryBackground,
-            elevation: 4.0,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 0.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
@@ -92,7 +95,6 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 Expanded(
                   child: Container(
                     width: 290.0,
-                    height: 100.0,
                     decoration: const BoxDecoration(
                       color: Color(0x00FFFFFF),
                     ),
@@ -103,43 +105,45 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
+                                10.0, 5.0, 10.0, 5.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    widget.productName!,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
+                                Text(
+                                  widget.productName!,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.00, 0.00),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 15.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        _model.updatePage(() {
-                                          FFAppState()
-                                              .removeAtIndexFromCartItemList(
-                                                  widget.carItemIndex!);
-                                        });
-                                      },
-                                      child: Icon(
-                                        Icons.delete_forever_sharp,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 32.0,
-                                      ),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      _model.updatePage(() {
+                                        FFAppState()
+                                            .removeAtIndexFromCartItemList(
+                                                widget.carItemIndex!);
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.delete_forever_sharp,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 32.0,
                                     ),
                                   ),
                                 ),
@@ -151,33 +155,42 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                           alignment: const AlignmentDirectional(-1.00, 0.00),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 0.0, 0.0, 0.0),
+                                10.0, 5.0, 10.0, 5.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Align(
                                   alignment: const AlignmentDirectional(-1.00, 0.00),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 5.0, 0.0, 5.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        formatNumber(
-                                          valueOrDefault<int>(
-                                                _model.countControllerValue,
-                                                1,
-                                              ) *
-                                              widget.productValue!,
-                                          formatType: FormatType.decimal,
-                                          decimalType: DecimalType.commaDecimal,
-                                          currency: 'R\$',
-                                        ),
-                                        '0',
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      formatNumber(
+                                        valueOrDefault<int>(
+                                              _model.countControllerValue,
+                                              1,
+                                            ) *
+                                            widget.productValue!,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.commaDecimal,
+                                        currency: 'R\$',
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                      '0',
                                     ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w600,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                   ),
                                 ),
                               ],
@@ -192,10 +205,9 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                               alignment: const AlignmentDirectional(0.00, 0.00),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 0.0),
+                                    10.0, 5.0, 10.0, 5.0),
                                 child: Container(
-                                  width: 160.0,
-                                  height: 35.0,
+                                  width: 140.0,
                                   decoration: BoxDecoration(
                                     color: const Color(0x00FFFFFF),
                                     borderRadius: BorderRadius.circular(8.0),
@@ -213,7 +225,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                                               .secondaryText
                                           : FlutterFlowTheme.of(context)
                                               .alternate,
-                                      size: 20.0,
+                                      size: 16.0,
                                     ),
                                     incrementIconBuilder: (enabled) => FaIcon(
                                       FontAwesomeIcons.plus,
@@ -221,12 +233,23 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                                           ? const Color(0xFFFF7700)
                                           : FlutterFlowTheme.of(context)
                                               .alternate,
-                                      size: 20.0,
+                                      size: 16.0,
                                     ),
                                     countBuilder: (count) => Text(
                                       count.toString(),
                                       style: FlutterFlowTheme.of(context)
-                                          .titleLarge,
+                                          .titleLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLargeFamily,
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.normal,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLargeFamily),
+                                          ),
                                     ),
                                     count: _model.countControllerValue ??=
                                         widget.totalCounter,
@@ -246,7 +269,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                                     minimum: 1,
                                     contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 10.0, 0.0),
+                                            10.0, 5.0, 10.0, 5.0),
                                   ),
                                 ),
                               ),

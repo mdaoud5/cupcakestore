@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'order_item_model.dart';
 export 'order_item_model.dart';
@@ -34,6 +35,8 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OrderItemModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -53,8 +56,8 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
         Expanded(
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            color: FlutterFlowTheme.of(context).primaryBackground,
-            elevation: 4.0,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 1.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
@@ -107,8 +110,16 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                                       15.0, 10.0, 0.0, 10.0),
                                   child: Text(
                                     widget.productName!,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w600,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                   ),
                                 ),
                               ],
@@ -132,7 +143,18 @@ class _OrderItemWidgetState extends State<OrderItemWidget> {
                                     child: Text(
                                       widget.totalCounter.toString(),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.w600,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
                                     ),
                                   ),
                                 ),

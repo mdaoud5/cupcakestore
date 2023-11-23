@@ -33,6 +33,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     _model.searchInputTextController ??= TextEditingController();
     _model.searchInputTextFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -267,7 +269,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
-                                                              'Clash Display',
+                                                              'Open Sans',
                                                           color:
                                                               const Color(0xFF95A1AC),
                                                           fontSize: 14.0,
@@ -522,8 +524,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     );
                                                   },
                                                   child: Container(
-                                                    width: 175.0,
-                                                    height: 195.0,
+                                                    width: 182.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
@@ -699,9 +700,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   height: 33.0,
                                                                   padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10.0,
+                                                                          5.0,
                                                                           0.0,
-                                                                          10.0,
+                                                                          5.0,
                                                                           0.0),
                                                                   iconPadding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -719,6 +720,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             FlutterFlowTheme.of(context).titleSmallFamily,
                                                                         color: Colors
                                                                             .white,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
                                                                         useGoogleFonts:
                                                                             GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
                                                                       ),
@@ -780,7 +785,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     ],
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyMedium,
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
                                                                   ),
                                                                 ),
                                                               ),

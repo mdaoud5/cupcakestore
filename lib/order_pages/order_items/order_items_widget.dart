@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/components/order_item/order_item_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +31,8 @@ class _OrderItemsWidgetState extends State<OrderItemsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OrderItemsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -117,20 +120,43 @@ class _OrderItemsWidgetState extends State<OrderItemsWidget> {
                               color: Color(0x00FFFFFF),
                             ),
                             alignment: const AlignmentDirectional(0.00, 0.00),
-                            child: Text(
-                              orderItemsOrdersRecord.orderNumber.toString(),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
+                            child: RichText(
+                              textScaleFactor:
+                                  MediaQuery.of(context).textScaleFactor,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '#',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16.0,
+                                    ),
                                   ),
+                                  TextSpan(
+                                    text: orderItemsOrdersRecord.orderNumber
+                                        .toString(),
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16.0,
+                                    ),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      fontSize: 16.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
                             ),
                           ),
                         ),
@@ -141,73 +167,141 @@ class _OrderItemsWidgetState extends State<OrderItemsWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            15.0, 0.0, 15.0, 15.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            RichText(
-                              textScaleFactor:
-                                  MediaQuery.of(context).textScaleFactor,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: valueOrDefault<String>(
-                                      dateTimeFormat(
-                                          'dd/mm/yyyy  H:mm',
-                                          orderItemsOrdersRecord
-                                              .orderCreatedTime),
-                                      '22/10/2023',
-                                    ),
-                                    style: const TextStyle(),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 16.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 0.0, 15.0, 15.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                RichText(
+                                  textScaleFactor:
+                                      MediaQuery.of(context).textScaleFactor,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: valueOrDefault<String>(
+                                          dateTimeFormat(
+                                              'dd/mm/yyyy  H:mm',
+                                              orderItemsOrdersRecord
+                                                  .orderCreatedTime),
+                                          '22/10/2023',
+                                        ),
+                                        style: const TextStyle(),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                            RichText(
-                              textScaleFactor:
-                                  MediaQuery.of(context).textScaleFactor,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: formatNumber(
-                                      orderItemsOrdersRecord.orderValue,
-                                      formatType: FormatType.decimal,
-                                      decimalType: DecimalType.commaDecimal,
-                                      currency: 'R\$',
-                                    ),
-                                    style: const TextStyle(),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 16.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
+                                                  .bodyMediumFamily,
+                                          fontSize: 16.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ),
+                                RichText(
+                                  textScaleFactor:
+                                      MediaQuery.of(context).textScaleFactor,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Valor: ',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: formatNumber(
+                                          orderItemsOrdersRecord.orderValue,
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.commaDecimal,
+                                          currency: 'R\$',
+                                        ),
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .success,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16.0,
+                                        ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
+                                                  .bodyMediumFamily,
+                                          fontSize: 16.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                15.0, 0.0, 15.0, 15.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                RichText(
+                                  textScaleFactor:
+                                      MediaQuery.of(context).textScaleFactor,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Status: ',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text:
+                                            orderItemsOrdersRecord.orderStatus,
+                                        style: TextStyle(
+                                          color: functions.getColorStatus(
+                                              orderItemsOrdersRecord
+                                                  .orderStatus),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16.0,
+                                        ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          fontSize: 16.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

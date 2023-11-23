@@ -14,6 +14,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
+import 'backend/stripe/payment_manager.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
@@ -23,6 +25,8 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  await initializeStripe();
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -135,8 +139,8 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': const HomePageWidget(),
-      'cart': const CartWidget(),
       'searchPage': const SearchPageWidget(),
+      'cart': const CartWidget(),
       'ordersPage': const OrdersPageWidget(),
       'profile': const ProfileWidget(),
     };
@@ -204,16 +208,14 @@ class _NavBarPageState extends State<NavBarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    currentIndex == 1
-                        ? FontAwesomeIcons.cartPlus
-                        : FontAwesomeIcons.cartPlus,
+                    Icons.search_rounded,
                     color: currentIndex == 1
                         ? const Color(0xFFFF7700)
                         : FlutterFlowTheme.of(context).secondaryText,
-                    size: currentIndex == 1 ? 24.0 : 24.0,
+                    size: 24.0,
                   ),
                   Text(
-                    'Cart',
+                    'Pesquisar',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: currentIndex == 1
@@ -230,14 +232,16 @@ class _NavBarPageState extends State<NavBarPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.search_rounded,
+                    currentIndex == 2
+                        ? FontAwesomeIcons.cartPlus
+                        : FontAwesomeIcons.cartPlus,
                     color: currentIndex == 2
                         ? const Color(0xFFFF7700)
                         : FlutterFlowTheme.of(context).secondaryText,
-                    size: 24.0,
+                    size: currentIndex == 2 ? 24.0 : 24.0,
                   ),
                   Text(
-                    'Pesquisar',
+                    'Cart',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: currentIndex == 2

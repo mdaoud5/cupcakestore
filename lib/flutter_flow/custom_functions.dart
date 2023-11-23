@@ -46,11 +46,12 @@ int? findIndexCart(
   return null;
 }
 
-double? addDliveryFee(
+double sumTotal(
   double fee,
   double productsSum,
+  double copum,
 ) {
-  return fee + productsSum;
+  return fee + productsSum - copum;
 }
 
 List<ProductsRecord> chooseList(
@@ -97,4 +98,56 @@ Color getColorStatus(String status) {
     default:
       return Color(0xFF8F7010);
   }
+}
+
+double calcuateDestance(
+  LatLng store,
+  FFPlace clinetAdress,
+) {
+  // return the destance between two googlePlaces
+  final double lat1 = store.latitude;
+  final double lon1 = store.longitude;
+  final double lat2 = clinetAdress.latLng.latitude;
+  final double lon2 = clinetAdress.latLng.longitude;
+
+  const double p = 0.017453292519943295;
+  final double a = 0.5 -
+      math.cos((lat2 - lat1) * p) / 2 +
+      math.cos(lat1 * p) *
+          math.cos(lat2 * p) *
+          (1 - math.cos((lon2 - lon1) * p)) /
+          2;
+  return 12742 * math.asin(math.sqrt(a));
+}
+
+double calculateDeleveryFee(
+  LatLng store,
+  FFPlace adress,
+) {
+  final double lat1 = store.latitude;
+  final double lon1 = store.longitude;
+  final double lat2 = adress.latLng.latitude;
+  final double lon2 = adress.latLng.longitude;
+
+  const double p = 0.017453292519943295;
+  final double a = 0.5 -
+      math.cos((lat2 - lat1) * p) / 2 +
+      math.cos(lat1 * p) *
+          math.cos(lat2 * p) *
+          (1 - math.cos((lon2 - lon1) * p)) /
+          2;
+  final double distance = 12742 * math.asin(math.sqrt(a));
+
+  if (distance < 2) {
+    return 5;
+  } else {
+    return double.parse((5 + 1.5 * distance).toStringAsFixed(2));
+  }
+}
+
+int orderNumber() {
+  // A function read server time and return a sequencial number
+  final now = DateTime.now();
+  final serverTime = now.millisecondsSinceEpoch;
+  return serverTime;
 }

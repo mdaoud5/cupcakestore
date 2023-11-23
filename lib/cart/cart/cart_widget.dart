@@ -1,12 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/stripe/payment_manager.dart';
 import '/components/cart_item/cart_item_widget.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,6 +35,8 @@ class _CartWidgetState extends State<CartWidget> {
 
     _model.cUPOMTextFieldController ??= TextEditingController();
     _model.cUPOMTextFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -109,8 +111,7 @@ class _CartWidgetState extends State<CartWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
+                                    fontFamily: 'Poppins',
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                     useGoogleFonts: GoogleFonts.asMap()
@@ -371,7 +372,7 @@ class _CartWidgetState extends State<CartWidget> {
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Clash Display',
+                                                                        'Poppins',
                                                                     color: const Color(
                                                                         0xFF95A1AC),
                                                                     fontSize:
@@ -441,7 +442,12 @@ class _CartWidgetState extends State<CartWidget> {
                                         if (buttonCuponsRecord != null) {
                                           setState(() {
                                             FFAppState().cupomValue =
-                                                buttonCuponsRecord.value;
+                                                buttonCuponsRecord.value *
+                                                    functions.sumCartItems(
+                                                        FFAppState()
+                                                            .cartItemList
+                                                            .toList()) /
+                                                    100;
                                             FFAppState().total =
                                                 FFAppState().productTotal -
                                                     FFAppState().cupomValue;
@@ -505,10 +511,9 @@ class _CartWidgetState extends State<CartWidget> {
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
+                                              fontFamily: 'Poppins',
                                               color: Colors.white,
+                                              fontWeight: FontWeight.normal,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(
@@ -531,106 +536,298 @@ class _CartWidgetState extends State<CartWidget> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0.00, 0.00),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1.00, 0.00),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 10.0),
-                              child: Text(
-                                'Meu endereço',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                        if (FFAppState().cupomValue > 0.0)
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                setState(() {
+                                  _model.cUPOMTextFieldController?.clear();
+                                });
+                                setState(() {
+                                  FFAppState().cupomValue = 0.0;
+                                });
+                              },
+                              text: 'Limpar',
+                              options: FFButtonOptions(
+                                width: 300.0,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: const Color(0xFFFF7700),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w100,
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.normal,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
+                                                  .titleSmallFamily),
                                     ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.00, 0.00),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  FlutterFlowPlacePicker(
-                                    iOSGoogleMapsApiKey:
-                                        'AIzaSyCvaKbKAhBnvWEYkYYEFl_J19abRn6-1tI',
-                                    androidGoogleMapsApiKey:
-                                        'AIzaSyCvaKbKAhBnvWEYkYYEFl_J19abRn6-1tI',
-                                    webGoogleMapsApiKey:
-                                        'AIzaSyCvaKbKAhBnvWEYkYYEFl_J19abRn6-1tI',
-                                    onSelect: (place) async {
-                                      setState(() =>
-                                          _model.placePickerValue = place);
-                                    },
-                                    defaultText: '',
-                                    icon: Icon(
-                                      Icons.place,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      size: 32.0,
-                                    ),
-                                    buttonOptions: FFButtonOptions(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      color: const Color(0xFF249638),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
+                      ],
+                    ),
+                  ),
+                  if (FFAppState().cartItemList.isNotEmpty)
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 10.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 10.0),
+                                child: Text(
+                                  'Meu endereço',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
                                                 FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(0.00, 0.00),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: FlutterFlowPlacePicker(
+                                        iOSGoogleMapsApiKey:
+                                            'AIzaSyCvaKbKAhBnvWEYkYYEFl_J19abRn6-1tI',
+                                        androidGoogleMapsApiKey:
+                                            'AIzaSyCvaKbKAhBnvWEYkYYEFl_J19abRn6-1tI',
+                                        webGoogleMapsApiKey:
+                                            'AIzaSyCvaKbKAhBnvWEYkYYEFl_J19abRn6-1tI',
+                                        onSelect: (place) async {
+                                          setState(() =>
+                                              _model.placePickerValue = place);
+                                        },
+                                        defaultText: '',
+                                        icon: Icon(
+                                          Icons.place,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          size: 28.0,
+                                        ),
+                                        buttonOptions: FFButtonOptions(
+                                          width: 64.0,
+                                          height: 50.0,
+                                          color: const Color(0xFF249638),
+                                          textStyle: TextStyle(
                                             color: FlutterFlowTheme.of(context)
                                                 .info,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
+                                            fontWeight: FontWeight.w100,
                                           ),
-                                      elevation: 2.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 0.0,
+                                          elevation: 2.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: RichText(
+                                          textScaleFactor:
+                                              MediaQuery.of(context)
+                                                  .textScaleFactor,
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: valueOrDefault<String>(
+                                                  _model
+                                                      .placePickerValue.address,
+                                                  'My adress',
+                                                ),
+                                                style: const TextStyle(),
+                                              )
+                                            ],
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 14.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                          ),
+                                          textAlign: TextAlign.start,
+                                          maxLines: 3,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            if (_model.placePickerValue.address !=
+                                FFAppState().clinteAdress)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    setState(() {
+                                      FFAppState().Adress =
+                                          _model.placePickerValue.latLng;
+                                      FFAppState().taxaDeIntrega =
+                                          functions.calculateDeleveryFee(
+                                              FFAppState().storeAdress!,
+                                              _model.placePickerValue);
+                                      FFAppState().clinteAdress =
+                                          _model.placePickerValue.address;
+                                    });
+                                  },
+                                  text: 'Salvar',
+                                  options: FFButtonOptions(
+                                    width: 300.0,
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: const Color(0xFFFF7700),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.normal,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily),
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 0.0, 0.0),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  if (false)
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 10.0),
+                                child: Text(
+                                  'Forma de pagamento',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.00, 0.00),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ecom-ctqpd1/assets/1i5m5nr62ep0/Image_1205_(1).png',
+                                            width: 50.0,
+                                            height: 50.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.00, 0.00),
                                       child: RichText(
                                         textScaleFactor: MediaQuery.of(context)
                                             .textScaleFactor,
                                         text: TextSpan(
-                                          children: [
+                                          children: const [
                                             TextSpan(
-                                              text: valueOrDefault<String>(
-                                                _model.placePickerValue.address,
-                                                'My adress',
-                                              ),
-                                              style: const TextStyle(),
+                                              text: 'Hello World ',
+                                              style: TextStyle(),
                                             )
                                           ],
                                           style: FlutterFlowTheme.of(context)
@@ -642,7 +839,7 @@ class _CartWidgetState extends State<CartWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
-                                                fontSize: 16.0,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -651,134 +848,35 @@ class _CartWidgetState extends State<CartWidget> {
                                                             .bodyMediumFamily),
                                               ),
                                         ),
-                                        textAlign: TextAlign.start,
-                                        maxLines: 3,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(1.00, 0.00),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed('paymentPage');
+                                        },
+                                        child: Icon(
+                                          Icons.navigate_next,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0.00, 0.00),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1.00, 0.00),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 10.0),
-                              child: Text(
-                                'Forma de pagamento',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w100,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(-1.00, 0.00),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Align(
-                                    alignment:
-                                        const AlignmentDirectional(-1.00, 0.00),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ecom-ctqpd1/assets/1i5m5nr62ep0/Image_1205_(1).png',
-                                        width: 50.0,
-                                        height: 50.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment:
-                                        const AlignmentDirectional(-1.00, 0.00),
-                                    child: RichText(
-                                      textScaleFactor: MediaQuery.of(context)
-                                          .textScaleFactor,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: valueOrDefault<String>(
-                                              _model.placePickerValue.address,
-                                              'Adress',
-                                            ),
-                                            style: const TextStyle(),
-                                          )
-                                        ],
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 16.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: const AlignmentDirectional(1.00, 0.00),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.pushNamed('paymentPage');
-                                      },
-                                      child: Icon(
-                                        Icons.navigate_next,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
@@ -793,10 +891,9 @@ class _CartWidgetState extends State<CartWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w100,
+                                  fontFamily: 'Poppins',
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .bodyMediumFamily),
@@ -827,26 +924,28 @@ class _CartWidgetState extends State<CartWidget> {
                                           children: [
                                             Text(
                                               'Subtotal',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.w100,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMediumFamily),
-                                                  ),
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                             ),
                                             Text(
                                               formatNumber(
@@ -859,92 +958,101 @@ class _CartWidgetState extends State<CartWidget> {
                                                     DecimalType.commaDecimal,
                                                 currency: 'R\$',
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMediumFamily,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    fontSize: 14.0,
-                                                    fontWeight: FontWeight.w100,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMediumFamily),
-                                                  ),
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                             ),
                                           ],
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 10.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Taxa de entrega',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.w100,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
-                                          ),
-                                          Text(
-                                            formatNumber(
-                                              FFAppState().taxaDeIntrega,
-                                              formatType: FormatType.decimal,
-                                              decimalType:
-                                                  DecimalType.commaDecimal,
-                                              currency: 'R\$',
+                                    if (FFAppState().taxaDeIntrega != 0.0)
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Taxa de entrega',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.w100,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
-                                          ),
-                                        ],
+                                            Text(
+                                              formatNumber(
+                                                FFAppState().taxaDeIntrega,
+                                                formatType: FormatType.decimal,
+                                                decimalType:
+                                                    DecimalType.commaDecimal,
+                                                currency: 'R\$',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
                                     if (FFAppState().cupomValue > 0.0)
                                       Align(
                                         alignment:
@@ -971,9 +1079,9 @@ class _CartWidgetState extends State<CartWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          fontSize: 14.0,
+                                                          fontSize: 12.0,
                                                           fontWeight:
-                                                              FontWeight.w100,
+                                                              FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -1004,7 +1112,7 @@ class _CartWidgetState extends State<CartWidget> {
                                                               .secondaryText,
                                                           fontSize: 14.0,
                                                           fontWeight:
-                                                              FontWeight.w100,
+                                                              FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -1043,8 +1151,8 @@ class _CartWidgetState extends State<CartWidget> {
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyMediumFamily,
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.w100,
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.normal,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
@@ -1065,10 +1173,9 @@ class _CartWidgetState extends State<CartWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.w100,
+                                        fontFamily: 'Poppins',
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
@@ -1096,73 +1203,155 @@ class _CartWidgetState extends State<CartWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 if (loggedIn) {
-                                  if (true) {
-                                    var ordersRecordReference =
-                                        OrdersRecord.createDoc(
-                                            currentUserReference!);
-                                    await ordersRecordReference.set({
-                                      ...createOrdersRecordData(
-                                        orderStatus: 'Preparação',
-                                        orderValue: functions.sumCartItems(
-                                                FFAppState()
-                                                    .cartItemList
-                                                    .toList()) +
-                                            FFAppState().taxaDeIntrega -
-                                            valueOrDefault<double>(
-                                              FFAppState().cupomValue,
-                                              0.0,
-                                            ),
-                                        orderNumber: valueOrDefault<int>(
-                                          random_data.randomInteger(6, 6),
-                                          000000,
-                                        ),
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'order_created_time':
-                                              FieldValue.serverTimestamp(),
-                                          'order_items':
-                                              getCartItemTypeListFirestoreData(
-                                            FFAppState().cartItemList,
+                                  if (FFAppState().cartItemList.isNotEmpty) {
+                                    if (FFAppState().taxaDeIntrega != 0.0) {
+                                      final paymentResponse =
+                                          await processStripePayment(
+                                        context,
+                                        amount: (functions.sumTotal(
+                                                    FFAppState().taxaDeIntrega,
+                                                    functions.sumCartItems(
+                                                        FFAppState()
+                                                            .cartItemList
+                                                            .toList()),
+                                                    FFAppState().cupomValue) *
+                                                100)
+                                            .round(),
+                                        currency: 'BRL',
+                                        customerEmail: currentUserEmail,
+                                        customerName: currentUserDisplayName,
+                                        allowGooglePay: false,
+                                        allowApplePay: false,
+                                        themeStyle: ThemeMode.light,
+                                        buttonColor: const Color(0xFFFF7700),
+                                        buttonTextColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                      );
+                                      if (paymentResponse.paymentId == null &&
+                                          paymentResponse.errorMessage !=
+                                              null) {
+                                        showSnackbar(
+                                          context,
+                                          'Error: ${paymentResponse.errorMessage}',
+                                        );
+                                      }
+                                      _model.paymentId =
+                                          paymentResponse.paymentId ?? '';
+
+                                      if (_model.paymentId != null &&
+                                          _model.paymentId != '') {
+                                        var ordersRecordReference =
+                                            OrdersRecord.createDoc(
+                                                currentUserReference!);
+                                        await ordersRecordReference.set({
+                                          ...createOrdersRecordData(
+                                            orderStatus: 'Preparação',
+                                            orderValue: functions.sumCartItems(
+                                                    FFAppState()
+                                                        .cartItemList
+                                                        .toList()) +
+                                                functions.calculateDeleveryFee(
+                                                    FFAppState().storeAdress!,
+                                                    _model.placePickerValue) -
+                                                valueOrDefault<double>(
+                                                  FFAppState().cupomValue,
+                                                  0.0,
+                                                ),
+                                            orderNumber:
+                                                functions.orderNumber(),
+                                            deliveryAdress:
+                                                FFAppState().clinteAdress,
                                           ),
-                                        },
-                                      ),
-                                    });
-                                    _model.order =
-                                        OrdersRecord.getDocumentFromData({
-                                      ...createOrdersRecordData(
-                                        orderStatus: 'Preparação',
-                                        orderValue: functions.sumCartItems(
-                                                FFAppState()
-                                                    .cartItemList
-                                                    .toList()) +
-                                            FFAppState().taxaDeIntrega -
-                                            valueOrDefault<double>(
-                                              FFAppState().cupomValue,
-                                              0.0,
-                                            ),
-                                        orderNumber: valueOrDefault<int>(
-                                          random_data.randomInteger(6, 6),
-                                          000000,
-                                        ),
-                                      ),
-                                      ...mapToFirestore(
-                                        {
-                                          'order_created_time': DateTime.now(),
-                                          'order_items':
-                                              getCartItemTypeListFirestoreData(
-                                            FFAppState().cartItemList,
+                                          ...mapToFirestore(
+                                            {
+                                              'order_created_time':
+                                                  FieldValue.serverTimestamp(),
+                                              'order_items':
+                                                  getCartItemTypeListFirestoreData(
+                                                FFAppState().cartItemList,
+                                              ),
+                                            },
                                           ),
-                                        },
+                                        });
+                                        _model.order =
+                                            OrdersRecord.getDocumentFromData({
+                                          ...createOrdersRecordData(
+                                            orderStatus: 'Preparação',
+                                            orderValue: functions.sumCartItems(
+                                                    FFAppState()
+                                                        .cartItemList
+                                                        .toList()) +
+                                                functions.calculateDeleveryFee(
+                                                    FFAppState().storeAdress!,
+                                                    _model.placePickerValue) -
+                                                valueOrDefault<double>(
+                                                  FFAppState().cupomValue,
+                                                  0.0,
+                                                ),
+                                            orderNumber:
+                                                functions.orderNumber(),
+                                            deliveryAdress:
+                                                FFAppState().clinteAdress,
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'order_created_time':
+                                                  DateTime.now(),
+                                              'order_items':
+                                                  getCartItemTypeListFirestoreData(
+                                                FFAppState().cartItemList,
+                                              ),
+                                            },
+                                          ),
+                                        }, ordersRecordReference);
+                                        setState(() {
+                                          FFAppState().cartItemList = [];
+                                          FFAppState().cupomValue = 0;
+                                          FFAppState().Adress = const LatLng(
+                                              -10.2396971, -48.32634729999999);
+                                          FFAppState().taxaDeIntrega = 0;
+                                        });
+
+                                        context.pushNamed('successPage');
+                                      } else {
+                                        context.pushNamed('failedPage');
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Por favor insira seu endereço',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Sua Sacola está vazinha',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
                                       ),
-                                    }, ordersRecordReference);
-                                  }
-                                  setState(() {
-                                    FFAppState().cartItemList = [];
-                                    FFAppState().cupomValue = 0;
-                                  });
-                                  if (true) {
-                                    context.pushNamed('successPage');
+                                    );
                                   }
                                 }
 
@@ -1180,10 +1369,9 @@ class _CartWidgetState extends State<CartWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
+                                      fontFamily: 'Poppins',
                                       color: Colors.white,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)

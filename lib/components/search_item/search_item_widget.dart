@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'search_item_model.dart';
 export 'search_item_model.dart';
@@ -42,6 +43,8 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SearchItemModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -61,8 +64,8 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
         Expanded(
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            color: FlutterFlowTheme.of(context).primaryBackground,
-            elevation: 4.0,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 6.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
@@ -94,7 +97,6 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                 Expanded(
                   child: Container(
                     width: 290.0,
-                    height: 100.0,
                     decoration: const BoxDecoration(
                       color: Color(0x00FFFFFF),
                     ),
@@ -105,85 +107,81 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                           alignment: const AlignmentDirectional(0.00, 0.00),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
+                                10.0, 10.0, 10.0, 5.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    widget.productName!,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
+                                Text(
+                                  widget.productName!,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 10.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      if (functions.isCartItem(
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (functions.isCartItem(
+                                            widget.carItemRef!,
+                                            FFAppState()
+                                                .cartItemList
+                                                .toList()) ==
+                                        true) {
+                                      setState(() {
+                                        FFAppState().updateCartItemListAtIndex(
+                                          functions.findIndexCart(
                                               widget.carItemRef!,
                                               FFAppState()
                                                   .cartItemList
-                                                  .toList()) ==
-                                          true) {
-                                        setState(() {
-                                          FFAppState()
-                                              .updateCartItemListAtIndex(
-                                            functions.findIndexCart(
-                                                widget.carItemRef!,
-                                                FFAppState()
-                                                    .cartItemList
-                                                    .toList())!,
-                                            (e) => e
-                                              ..incrementQuantity(
-                                                  _model.countControllerValue!),
-                                          );
-                                        });
-                                      } else {
-                                        setState(() {
-                                          FFAppState().addToCartItemList(
-                                              CartItemTypeStruct(
-                                            cartItem: widget.carItemRef,
-                                            quantity:
-                                                _model.countControllerValue,
-                                            valorTotal: widget.productValue,
-                                          ));
-                                        });
-                                      }
+                                                  .toList())!,
+                                          (e) => e
+                                            ..incrementQuantity(
+                                                _model.countControllerValue!),
+                                        );
+                                      });
+                                    } else {
+                                      setState(() {
+                                        FFAppState().addToCartItemList(
+                                            CartItemTypeStruct(
+                                          cartItem: widget.carItemRef,
+                                          quantity: _model.countControllerValue,
+                                          valorTotal: widget.productValue,
+                                        ));
+                                      });
+                                    }
 
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Item foi adicionado à sacola',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Item foi adicionado à sacola',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                           ),
-                                          duration:
-                                              const Duration(milliseconds: 1000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
                                         ),
-                                      );
-                                    },
-                                    child: Icon(
-                                      Icons.add_circle_outline_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
+                                        duration: const Duration(milliseconds: 1000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                      ),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.add_circle_outline_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
                                   ),
                                 ),
                               ],
@@ -194,33 +192,42 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                           alignment: const AlignmentDirectional(-1.00, 0.00),
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 0.0, 0.0, 0.0),
+                                10.0, 5.0, 10.0, 5.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Align(
                                   alignment: const AlignmentDirectional(-1.00, 0.00),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 5.0, 0.0, 5.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        formatNumber(
-                                          valueOrDefault<int>(
-                                                _model.countControllerValue,
-                                                1,
-                                              ) *
-                                              widget.productValue!,
-                                          formatType: FormatType.decimal,
-                                          decimalType: DecimalType.commaDecimal,
-                                          currency: 'R\$',
-                                        ),
-                                        '0',
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      formatNumber(
+                                        valueOrDefault<int>(
+                                              _model.countControllerValue,
+                                              1,
+                                            ) *
+                                            widget.productValue!,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.commaDecimal,
+                                        currency: 'R\$',
                                       ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                      '0',
                                     ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.w600,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
                                   ),
                                 ),
                               ],
@@ -235,10 +242,9 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                               alignment: const AlignmentDirectional(0.00, 0.00),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 0.0),
+                                    10.0, 5.0, 10.0, 5.0),
                                 child: Container(
-                                  width: 160.0,
-                                  height: 35.0,
+                                  width: 140.0,
                                   decoration: BoxDecoration(
                                     color: const Color(0x00FFFFFF),
                                     borderRadius: BorderRadius.circular(8.0),
@@ -256,7 +262,7 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                                               .secondaryText
                                           : FlutterFlowTheme.of(context)
                                               .alternate,
-                                      size: 20.0,
+                                      size: 16.0,
                                     ),
                                     incrementIconBuilder: (enabled) => FaIcon(
                                       FontAwesomeIcons.plus,
@@ -264,12 +270,21 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                                           ? const Color(0xFFFF7700)
                                           : FlutterFlowTheme.of(context)
                                               .alternate,
-                                      size: 20.0,
+                                      size: 16.0,
                                     ),
                                     countBuilder: (count) => Text(
                                       count.toString(),
                                       style: FlutterFlowTheme.of(context)
-                                          .titleLarge,
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.normal,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLargeFamily),
+                                          ),
                                     ),
                                     count: _model.countControllerValue ??=
                                         widget.totalCounter,
@@ -279,7 +294,7 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                                     minimum: 1,
                                     contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 10.0, 0.0),
+                                            10.0, 5.0, 10.0, 5.0),
                                   ),
                                 ),
                               ),

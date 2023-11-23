@@ -39,6 +39,11 @@ class OrdersRecord extends FirestoreRecord {
   List<CartItemTypeStruct> get orderItems => _orderItems ?? const [];
   bool hasOrderItems() => _orderItems != null;
 
+  // "delivery_adress" field.
+  String? _deliveryAdress;
+  String get deliveryAdress => _deliveryAdress ?? '';
+  bool hasDeliveryAdress() => _deliveryAdress != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -50,6 +55,7 @@ class OrdersRecord extends FirestoreRecord {
       snapshotData['order_items'],
       CartItemTypeStruct.fromMap,
     );
+    _deliveryAdress = snapshotData['delivery_adress'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -95,6 +101,7 @@ Map<String, dynamic> createOrdersRecordData({
   DateTime? orderCreatedTime,
   double? orderValue,
   int? orderNumber,
+  String? deliveryAdress,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -102,6 +109,7 @@ Map<String, dynamic> createOrdersRecordData({
       'order_created_time': orderCreatedTime,
       'order_value': orderValue,
       'order_number': orderNumber,
+      'delivery_adress': deliveryAdress,
     }.withoutNulls,
   );
 
@@ -118,7 +126,8 @@ class OrdersRecordDocumentEquality implements Equality<OrdersRecord> {
         e1?.orderCreatedTime == e2?.orderCreatedTime &&
         e1?.orderValue == e2?.orderValue &&
         e1?.orderNumber == e2?.orderNumber &&
-        listEquality.equals(e1?.orderItems, e2?.orderItems);
+        listEquality.equals(e1?.orderItems, e2?.orderItems) &&
+        e1?.deliveryAdress == e2?.deliveryAdress;
   }
 
   @override
@@ -127,7 +136,8 @@ class OrdersRecordDocumentEquality implements Equality<OrdersRecord> {
         e?.orderCreatedTime,
         e?.orderValue,
         e?.orderNumber,
-        e?.orderItems
+        e?.orderItems,
+        e?.deliveryAdress
       ]);
 
   @override

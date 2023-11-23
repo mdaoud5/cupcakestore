@@ -15,3 +15,4 @@ export '/order_pages/order_items/order_items_widget.dart' show OrderItemsWidget;
 export '/cart/success_page/success_page_widget.dart' show SuccessPageWidget;
 export '/cart/failed_page/failed_page_widget.dart' show FailedPageWidget;
 export '/auth/profile/profile_widget.dart' show ProfileWidget;
+export '/auth/profile_edit/profile_edit_widget.dart' show ProfileEditWidget;

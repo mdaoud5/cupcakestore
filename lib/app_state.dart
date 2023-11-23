@@ -64,7 +64,7 @@ class FFAppState extends ChangeNotifier {
     _cartItemList.insert(index, value);
   }
 
-  double _taxaDeIntrega = 12;
+  double _taxaDeIntrega = 0;
   double get taxaDeIntrega => _taxaDeIntrega;
   set taxaDeIntrega(double value) {
     _taxaDeIntrega = value;
@@ -115,6 +115,24 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInStautsList(int index, String value) {
     _stautsList.insert(index, value);
     prefs.setStringList('ff_stautsList', _stautsList);
+  }
+
+  LatLng? _storeAdress = const LatLng(-10.2322465, -48.3189497);
+  LatLng? get storeAdress => _storeAdress;
+  set storeAdress(LatLng? value) {
+    _storeAdress = value;
+  }
+
+  LatLng? _Adress = const LatLng(-10.2396971, -48.32634729999999);
+  LatLng? get Adress => _Adress;
+  set Adress(LatLng? value) {
+    _Adress = value;
+  }
+
+  String _clinteAdress = '';
+  String get clinteAdress => _clinteAdress;
+  set clinteAdress(String value) {
+    _clinteAdress = value;
   }
 }
 

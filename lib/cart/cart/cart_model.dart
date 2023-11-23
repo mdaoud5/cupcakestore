@@ -16,6 +16,8 @@ class CartModel extends FlutterFlowModel<CartWidget> {
   String? Function(BuildContext, String?)? cUPOMTextFieldControllerValidator;
   // State field(s) for PlacePicker widget.
   var placePickerValue = const FFPlace();
+  // Stores action output result for [Stripe Payment] action in Button widget.
+  String? paymentId;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   OrdersRecord? order;
 

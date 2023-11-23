@@ -40,6 +40,8 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OrderCompModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -59,14 +61,14 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
         Expanded(
           child: Card(
             clipBehavior: Clip.antiAliasWithSaveLayer,
-            color: FlutterFlowTheme.of(context).primaryBackground,
-            elevation: 4.0,
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 6.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   child: InkWell(
@@ -86,75 +88,91 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
                       );
                     },
                     child: Container(
-                      width: 290.0,
-                      height: 100.0,
                       decoration: const BoxDecoration(
                         color: Color(0x00FFFFFF),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 10.0, 15.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    functions
+                                        .getYear(widget.placingTime!)
+                                        .toString(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          fontSize: 12.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 5.0, 0.0, 5.0),
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
                                       functions
-                                          .getYear(widget.placingTime!)
+                                          .getDay(widget.placingTime!)
                                           .toString(),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .headlineLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLargeFamily,
+                                            color: const Color(0xFFFF7700),
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle: FontStyle.italic,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLargeFamily),
+                                          ),
                                     ),
                                   ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 5.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        functions
-                                            .getDay(widget.placingTime!)
-                                            .toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .override(
-                                              fontFamily:
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    functions.getMonth(widget.placingTime!),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          fontSize: 12.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineLargeFamily,
-                                              color: const Color(0xFFFF7700),
-                                              fontSize: 28.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle: FontStyle.italic,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLargeFamily),
-                                            ),
-                                      ),
-                                    ],
+                                                      .bodyMediumFamily),
+                                        ),
                                   ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      functions.getMonth(widget.placingTime!),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                ],
+                              ),
+                            ]
+                                .divide(const SizedBox(height: 5.0))
+                                .around(const SizedBox(height: 5.0)),
                           ),
                           Expanded(
                             child: Align(
@@ -204,12 +222,22 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
                                                       ),
                                                 ),
                                                 TextSpan(
+                                                  text: '#',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .success,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                TextSpan(
                                                   text: valueOrDefault<String>(
                                                     widget.orderNumber
                                                         ?.toString(),
                                                     '0',
                                                   ),
-                                                  style: TextStyle(
+                                                  style: GoogleFonts.getFont(
+                                                    'Inter',
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .success,
@@ -268,8 +296,9 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
                                                       ),
                                                       '0',
                                                     ),
-                                                    style: const TextStyle(
-                                                      color: Color(0xFFFF7700),
+                                                    style: GoogleFonts.getFont(
+                                                      'Inter',
+                                                      color: const Color(0xFFFF7700),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -329,7 +358,7 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
                                                               .getColorStatus(widget
                                                                   .orderStatus!),
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                              FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -346,16 +375,18 @@ class _OrderCompWidgetState extends State<OrderCompWidget> {
                                       ),
                                     ),
                                   ),
-                                ],
+                                ]
+                                    .divide(const SizedBox(height: 5.0))
+                                    .around(const SizedBox(height: 5.0)),
                               ),
                             ),
                           ),
-                        ],
+                        ].divide(const SizedBox(width: 5.0)),
                       ),
                     ),
                   ),
                 ),
-              ],
+              ].divide(const SizedBox(width: 5.0)).around(const SizedBox(width: 5.0)),
             ),
           ),
         ),

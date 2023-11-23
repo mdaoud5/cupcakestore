@@ -31,6 +31,8 @@ class _EntrarWidgetState extends State<EntrarWidget> {
 
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -143,10 +145,10 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .displaySmall
                                               .override(
-                                                fontFamily: 'Plus Jakarta Sans',
+                                                fontFamily: 'Poppins',
                                                 color: const Color(0xFF101213),
-                                                fontSize: 36.0,
-                                                fontWeight: FontWeight.w600,
+                                                fontSize: 32.0,
+                                                fontWeight: FontWeight.bold,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -158,16 +160,16 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 10.0),
+                                            15.0, 10.0, 0.0, 10.0),
                                         child: Text(
                                           'Seja bem-vindo',
                                           style: FlutterFlowTheme.of(context)
                                               .displaySmall
                                               .override(
-                                                fontFamily: 'Plus Jakarta Sans',
+                                                fontFamily: 'Poppins',
                                                 color: const Color(0xFF101213),
-                                                fontSize: 36.0,
-                                                fontWeight: FontWeight.w600,
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.bold,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -249,11 +251,10 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily:
-                                                      'Plus Jakarta Sans',
+                                                  fontFamily: 'Poppins',
                                                   color: const Color(0xFF101213),
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.normal,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
                                                       .containsKey(
@@ -360,11 +361,10 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily:
-                                                      'Plus Jakarta Sans',
+                                                  fontFamily: 'Poppins',
                                                   color: const Color(0xFF101213),
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.normal,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
                                                       .containsKey(
@@ -415,12 +415,11 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily:
-                                                          'Plus Jakarta Sans',
+                                                      fontFamily: 'Poppins',
                                                       color: Colors.white,
                                                       fontSize: 16.0,
                                                       fontWeight:
-                                                          FontWeight.w500,
+                                                          FontWeight.normal,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
                                                           .containsKey(
@@ -491,13 +490,12 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Plus Jakarta Sans',
+                                                          fontFamily: 'Inter',
                                                           color:
                                                               const Color(0xFF101213),
                                                           fontSize: 14.0,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                              FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(

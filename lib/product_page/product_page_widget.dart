@@ -40,6 +40,8 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
         FFAppState().productTotal = 0;
       });
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -166,10 +168,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
+                                                        fontFamily: 'Poppins',
                                                         fontSize: 18.0,
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -220,7 +219,21 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                               'Product discribtion',
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  fontSize: 12.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
                                           ),
                                         ),
                                       ),
@@ -240,7 +253,17 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                 'Quantidade',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 16.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
                                               ),
                                             ),
                                           ),
@@ -369,8 +392,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .titleLargeFamily,
+                                                          fontSize: 16.0,
                                                           fontWeight:
-                                                              FontWeight.bold,
+                                                              FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -399,67 +423,81 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                                           10.0, 0.0, 10.0, 0.0),
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 15.0, 0.0),
-                                            child: RichText(
-                                              textScaleFactor:
-                                                  MediaQuery.of(context)
-                                                      .textScaleFactor,
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text: formatNumber(
-                                                      productPageProductsRecord
-                                                              .productValue *
-                                                          _model
-                                                              .countControllerValue!,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType: DecimalType
-                                                          .commaDecimal,
-                                                      currency: 'R\$',
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                0.00, 0.00),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 15.0, 0.0),
+                                              child: RichText(
+                                                textScaleFactor:
+                                                    MediaQuery.of(context)
+                                                        .textScaleFactor,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Total: ',
+                                                      style:
+                                                          GoogleFonts.getFont(
+                                                        'Inter',
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 12.0,
+                                                      ),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontSize: 24.0,
-                                                          fontWeight:
-                                                              FontWeight.w800,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  )
-                                                ],
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          fontSize: 24.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
+                                                    TextSpan(
+                                                      text: formatNumber(
+                                                        productPageProductsRecord
+                                                                .productValue *
+                                                            _model
+                                                                .countControllerValue!,
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .commaDecimal,
+                                                        currency: 'R\$',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 24.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    )
+                                                  ],
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                textAlign: TextAlign.start,
                                               ),
                                             ),
                                           ),
@@ -532,7 +570,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                       text: 'Adicionar ao carrinho',
                                       icon: const Icon(
                                         Icons.add_shopping_cart,
-                                        size: 15.0,
+                                        size: 20.0,
                                       ),
                                       options: FFButtonOptions(
                                         width: 300.0,
@@ -546,11 +584,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
+                                              fontFamily: 'Poppins',
                                               color: Colors.white,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.normal,
                                               useGoogleFonts: GoogleFonts
                                                       .asMap()
                                                   .containsKey(

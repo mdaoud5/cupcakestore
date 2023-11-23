@@ -32,6 +32,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
 
     _model.searchTextFieldController ??= TextEditingController();
     _model.searchTextFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -126,8 +128,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
+                                      fontFamily: 'Poppins',
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.bold,
                                       useGoogleFonts: GoogleFonts.asMap()
@@ -281,22 +282,23 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Clash Display',
-                                                    color: const Color(0xFF95A1AC),
-                                                    fontSize: 14.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily),
-                                                  ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            const Color(0xFF95A1AC),
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                               validator: _model
                                                   .searchTextFieldControllerValidator
                                                   .asValidator(context),

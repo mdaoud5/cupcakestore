@@ -25,6 +25,8 @@ class _OrdersPageWidgetState extends State<OrdersPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OrdersPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -111,144 +113,150 @@ class _OrdersPageWidgetState extends State<OrdersPageWidget> {
                     ],
                   ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    StreamBuilder<List<OrdersRecord>>(
-                      stream: queryOrdersRecord(
-                        queryBuilder: (ordersRecord) => ordersRecord.whereNotIn(
-                            'order_Status', FFAppState().stautsList),
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        List<OrdersRecord> columnOrdersRecordList =
-                            snapshot.data!;
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnOrdersRecordList.length,
-                              (columnIndex) {
-                            final columnOrdersRecord =
-                                columnOrdersRecordList[columnIndex];
-                            return Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: wrapWithModel(
-                                    model: _model.orderCompModels1.getModel(
-                                      columnOrdersRecord.reference.id,
-                                      columnIndex,
-                                    ),
-                                    updateCallback: () => setState(() {}),
-                                    child: OrderCompWidget(
-                                      key: Key(
-                                        'Key08j_${columnOrdersRecord.reference.id}',
-                                      ),
-                                      orderNumber:
-                                          columnOrdersRecord.orderNumber,
-                                      orderValue: columnOrdersRecord.orderValue,
-                                      orderStatus:
-                                          columnOrdersRecord.orderStatus,
-                                      placingTime:
-                                          columnOrdersRecord.orderCreatedTime!,
-                                      orderRef: columnOrdersRecord.reference,
-                                    ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      StreamBuilder<List<OrdersRecord>>(
+                        stream: queryOrdersRecord(
+                          queryBuilder: (ordersRecord) =>
+                              ordersRecord.whereNotIn(
+                                  'order_Status', FFAppState().stautsList),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                              ],
+                              ),
                             );
-                          }),
-                        );
-                      },
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(-1.00, 0.00),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            15.0, 20.0, 0.0, 0.0),
-                        child: Text(
-                          'Histórico',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          }
+                          List<OrdersRecord> columnOrdersRecordList =
+                              snapshot.data!;
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: List.generate(
+                                columnOrdersRecordList.length, (columnIndex) {
+                              final columnOrdersRecord =
+                                  columnOrdersRecordList[columnIndex];
+                              return Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: wrapWithModel(
+                                      model: _model.orderCompModels1.getModel(
+                                        columnOrdersRecord.reference.id,
+                                        columnIndex,
+                                      ),
+                                      updateCallback: () => setState(() {}),
+                                      child: OrderCompWidget(
+                                        key: Key(
+                                          'Key08j_${columnOrdersRecord.reference.id}',
+                                        ),
+                                        orderNumber:
+                                            columnOrdersRecord.orderNumber,
+                                        orderValue:
+                                            columnOrdersRecord.orderValue,
+                                        orderStatus:
+                                            columnOrdersRecord.orderStatus,
+                                        placingTime: columnOrdersRecord
+                                            .orderCreatedTime!,
+                                        orderRef: columnOrdersRecord.reference,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                          );
+                        },
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(-1.00, 0.00),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15.0, 20.0, 0.0, 0.0),
+                          child: Text(
+                            'Histórico',
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
                         ),
                       ),
-                    ),
-                    Divider(
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                    ),
-                    StreamBuilder<List<OrdersRecord>>(
-                      stream: queryOrdersRecord(
-                        queryBuilder: (ordersRecord) => ordersRecord
-                            .whereIn('order_Status', FFAppState().stautsList)
-                            .orderBy('order_created_time', descending: true),
+                      Divider(
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                       ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                        List<OrdersRecord> columnOrdersRecordList =
-                            snapshot.data!;
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnOrdersRecordList.length,
-                              (columnIndex) {
-                            final columnOrdersRecord =
-                                columnOrdersRecordList[columnIndex];
-                            return Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: wrapWithModel(
-                                    model: _model.orderCompModels2.getModel(
-                                      columnOrdersRecord.reference.id,
-                                      columnIndex,
-                                    ),
-                                    updateCallback: () => setState(() {}),
-                                    child: OrderCompWidget(
-                                      key: Key(
-                                        'Keyfcr_${columnOrdersRecord.reference.id}',
-                                      ),
-                                      orderNumber:
-                                          columnOrdersRecord.orderNumber,
-                                      orderValue: columnOrdersRecord.orderValue,
-                                      orderStatus:
-                                          columnOrdersRecord.orderStatus,
-                                      placingTime:
-                                          columnOrdersRecord.orderCreatedTime!,
-                                      orderRef: columnOrdersRecord.reference,
-                                    ),
+                      StreamBuilder<List<OrdersRecord>>(
+                        stream: queryOrdersRecord(
+                          queryBuilder: (ordersRecord) => ordersRecord
+                              .whereIn('order_Status', FFAppState().stautsList)
+                              .orderBy('order_created_time', descending: true),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                              ],
+                              ),
                             );
-                          }),
-                        );
-                      },
-                    ),
-                  ],
+                          }
+                          List<OrdersRecord> columnOrdersRecordList =
+                              snapshot.data!;
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: List.generate(
+                                columnOrdersRecordList.length, (columnIndex) {
+                              final columnOrdersRecord =
+                                  columnOrdersRecordList[columnIndex];
+                              return Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: wrapWithModel(
+                                      model: _model.orderCompModels2.getModel(
+                                        columnOrdersRecord.reference.id,
+                                        columnIndex,
+                                      ),
+                                      updateCallback: () => setState(() {}),
+                                      child: OrderCompWidget(
+                                        key: Key(
+                                          'Keyfcr_${columnOrdersRecord.reference.id}',
+                                        ),
+                                        orderNumber:
+                                            columnOrdersRecord.orderNumber,
+                                        orderValue:
+                                            columnOrdersRecord.orderValue,
+                                        orderStatus:
+                                            columnOrdersRecord.orderStatus,
+                                        placingTime: columnOrdersRecord
+                                            .orderCreatedTime!,
+                                        orderRef: columnOrdersRecord.reference,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

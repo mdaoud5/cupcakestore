@@ -45,6 +45,8 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
 
     _model.passwordConfirmController ??= TextEditingController();
     _model.passwordConfirmFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -881,7 +883,17 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                               )
                                             ],
                                             style: FlutterFlowTheme.of(context)
-                                                .labelLarge,
+                                                .labelLarge
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 14.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLargeFamily),
+                                                ),
                                           ),
                                         ),
                                       ),

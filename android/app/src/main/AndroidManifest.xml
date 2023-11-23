@@ -2,7 +2,9 @@
     package="com.mycompany.cupcakestore"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:label="Cupcake Store"
@@ -57,6 +59,6 @@
             android:value="2" />
 
 
-
+        <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true"/>
     </application>
 </manifest>

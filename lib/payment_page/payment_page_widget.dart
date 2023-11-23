@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_credit_card_form.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +25,8 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PaymentPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -95,8 +98,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
+                                fontFamily: 'Poppins',
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
@@ -134,6 +136,32 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
+                ),
+              ),
+              FFButtonWidget(
+                onPressed: () {
+                  print('Button pressed ...');
+                },
+                text: 'Button',
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).titleSmallFamily,
+                        color: Colors.white,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).titleSmallFamily),
+                      ),
+                  elevation: 3.0,
+                  borderSide: const BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
             ],

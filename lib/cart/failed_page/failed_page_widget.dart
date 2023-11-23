@@ -24,6 +24,8 @@ class _FailedPageWidgetState extends State<FailedPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => FailedPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -121,11 +123,10 @@ class _FailedPageWidgetState extends State<FailedPageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
+                                    fontFamily: 'Poppins',
                                     color: const Color(0xFFFF7700),
                                     fontSize: 20.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.bold,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -171,10 +172,9 @@ class _FailedPageWidgetState extends State<FailedPageWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
+                                  fontFamily: 'Poppins',
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.normal,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .titleSmallFamily),

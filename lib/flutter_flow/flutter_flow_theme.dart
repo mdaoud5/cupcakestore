@@ -205,107 +205,107 @@ class MobileTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Clash Display';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displayLargeFamily => 'Inter';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Clash Display';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displayMediumFamily => 'Inter';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Clash Display';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displaySmallFamily => 'Inter';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Clash Display';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineLargeFamily => 'Inter';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Clash Display';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineMediumFamily => 'Inter';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Clash Display';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineSmallFamily => 'Inter';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Clash Display';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleLargeFamily => 'Inter';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Clash Display';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleMediumFamily => 'Inter';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.info,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Clash Display';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleSmallFamily => 'Inter';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Clash Display';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelLargeFamily => 'Inter';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Clash Display';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Clash Display';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Clash Display';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodyLargeFamily => 'Inter';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Clash Display';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodyMediumFamily => 'Inter';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Clash Display';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodySmallFamily => 'Inter';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -317,107 +317,107 @@ class TabletTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Clash Display';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displayLargeFamily => 'Inter';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Clash Display';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displayMediumFamily => 'Inter';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Clash Display';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displaySmallFamily => 'Inter';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Clash Display';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineLargeFamily => 'Inter';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Clash Display';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineMediumFamily => 'Inter';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Clash Display';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineSmallFamily => 'Inter';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Clash Display';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleLargeFamily => 'Inter';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Clash Display';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleMediumFamily => 'Inter';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.info,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Clash Display';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleSmallFamily => 'Inter';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Clash Display';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelLargeFamily => 'Inter';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Clash Display';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Clash Display';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Clash Display';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodyLargeFamily => 'Inter';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Clash Display';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodyMediumFamily => 'Inter';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Clash Display';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodySmallFamily => 'Inter';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -429,107 +429,107 @@ class DesktopTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Clash Display';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displayLargeFamily => 'Inter';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Clash Display';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displayMediumFamily => 'Inter';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Clash Display';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get displaySmallFamily => 'Inter';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Clash Display';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineLargeFamily => 'Inter';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Clash Display';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineMediumFamily => 'Inter';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Clash Display';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get headlineSmallFamily => 'Inter';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Clash Display';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleLargeFamily => 'Inter';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Clash Display';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleMediumFamily => 'Inter';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.info,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Clash Display';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get titleSmallFamily => 'Inter';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Clash Display';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelLargeFamily => 'Inter';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Clash Display';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Clash Display';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Clash Display';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodyLargeFamily => 'Inter';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Clash Display';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodyMediumFamily => 'Inter';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Clash Display';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'Clash Display',
+  String get bodySmallFamily => 'Inter';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
