@@ -833,35 +833,40 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                       ),
                                     ),
                                   ),
-
-                                  // You will have to add an action on this rich text to go to your login page.
-                                  Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 12.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed('Entrar');
-                                        },
-                                        child: RichText(
-                                          textScaleFactor:
-                                              MediaQuery.of(context)
-                                                  .textScaleFactor,
-                                          text: TextSpan(
-                                            children: [
-                                              const TextSpan(
-                                                text: 'Já tem conta?',
-                                                style: TextStyle(),
-                                              ),
-                                              TextSpan(
-                                                text: '  Entre aqui',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      // You will have to add an action on this rich text to go to your login page.
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.00, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  50.0, 12.0, 0.0, 12.0),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed('Entrar');
+                                            },
+                                            child: RichText(
+                                              textScaleFactor:
+                                                  MediaQuery.of(context)
+                                                      .textScaleFactor,
+                                              text: TextSpan(
+                                                children: [
+                                                  const TextSpan(
+                                                    text: 'Já tem conta?',
+                                                    style: TextStyle(),
+                                                  ),
+                                                  TextSpan(
+                                                    text: '  Entre aqui',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
@@ -880,35 +885,30 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                              )
-                                            ],
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 14.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelLargeFamily),
-                                                ),
+                                                  )
+                                                ],
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 14.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLargeFamily),
+                                                        ),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
-                          Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
                             ),
                           ),
                         ],
@@ -921,6 +921,7 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                 context: context,
                 phone: false,
                 tablet: false,
+                tabletLandscape: false,
               ))
                 Expanded(
                   flex: 6,
@@ -935,7 +936,7 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                         image: const DecorationImage(
                           fit: BoxFit.cover,
                           image: CachedNetworkImageProvider(
-                            'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1380&q=80',
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ecom-ctqpd1/assets/tlb4qhl8m4i4/Cupcake-RedVelvet.jpg',
                           ),
                         ),
                         borderRadius: BorderRadius.circular(16.0),

@@ -94,33 +94,25 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 10.0, 0.0),
-                                      child: Icon(
-                                        Icons.arrow_back_ios_new,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 36.0,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 334.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          'https://i.ibb.co/MC2Zs00/Image-1104.png',
-                                          width: 400.0,
-                                          height: 50.0,
-                                          fit: BoxFit.contain,
+                                    Expanded(
+                                      child: Container(
+                                        width: 334.0,
+                                        height: 100.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        alignment:
+                                            const AlignmentDirectional(0.00, 0.00),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://i.ibb.co/MC2Zs00/Image-1104.png',
+                                            width: 400.0,
+                                            height: 50.0,
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -185,6 +177,7 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                         child: SizedBox(
                                           width: 370.0,
                                           child: TextFormField(
+                                            key: const ValueKey('emailAddress_nqt9'),
                                             controller:
                                                 _model.emailAddressController,
                                             focusNode:
@@ -276,6 +269,7 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                         child: SizedBox(
                                           width: 370.0,
                                           child: TextFormField(
+                                            key: const ValueKey('password_lbx1'),
                                             controller:
                                                 _model.passwordController,
                                             focusNode: _model.passwordFocusNode,
@@ -437,57 +431,63 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                           ),
                                         ),
                                       ),
-
-                                      // You will have to add an action on this rich text to go to your login page.
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.00, 0.00),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 12.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed('CrieUmaConta');
-                                            },
-                                            child: RichText(
-                                              textScaleFactor:
-                                                  MediaQuery.of(context)
-                                                      .textScaleFactor,
-                                              text: TextSpan(
-                                                children: [
-                                                  const TextSpan(
-                                                    text: 'Não tem conta ',
-                                                    style: TextStyle(),
-                                                  ),
-                                                  TextSpan(
-                                                    text: 'Crie uma aqui',
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          // You will have to add an action on this rich text to go to your login page.
+                                          Align(
+                                            alignment: const AlignmentDirectional(
+                                                0.00, 0.00),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 12.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                      'CrieUmaConta');
+                                                },
+                                                child: RichText(
+                                                  textScaleFactor:
+                                                      MediaQuery.of(context)
+                                                          .textScaleFactor,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      const TextSpan(
+                                                        text: 'Não tem conta ',
+                                                        style: TextStyle(),
+                                                      ),
+                                                      TextSpan(
+                                                        text: 'Crie uma aqui',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  color: const Color(
+                                                                      0xFFFF7700),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      )
+                                                    ],
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Plus Jakarta Sans',
-                                                          color:
-                                                              const Color(0xFFFF7700),
-                                                          fontSize: 14.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  )
-                                                ],
-                                                style:
-                                                    FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
@@ -503,10 +503,12 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -538,7 +540,7 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: Image.network(
-                            'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1380&q=80',
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ecom-ctqpd1/assets/tlb4qhl8m4i4/Cupcake-RedVelvet.jpg',
                           ).image,
                         ),
                         borderRadius: BorderRadius.circular(16.0),

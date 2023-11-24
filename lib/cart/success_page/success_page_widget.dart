@@ -60,36 +60,6 @@ class _SuccessPageWidgetState extends State<SuccessPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Align(
-                alignment: const AlignmentDirectional(-1.00, 0.00),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            10.0, 0.0, 10.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.safePop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 36.0,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
               Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -97,58 +67,63 @@ class _SuccessPageWidgetState extends State<SuccessPageWidget> {
                   children: [
                     Align(
                       alignment: const AlignmentDirectional(0.00, -1.00),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 75.0,
-                            height: 75.0,
-                            decoration: const BoxDecoration(),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ecom-ctqpd1/assets/efgl152muirx/Container_5007.png',
-                                width: 300.0,
-                                height: 200.0,
-                                fit: BoxFit.cover,
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 60.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 75.0,
+                              height: 75.0,
+                              decoration: const BoxDecoration(),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/ecom-ctqpd1/assets/efgl152muirx/Container_5007.png',
+                                  width: 300.0,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 15.0),
-                            child: Text(
-                              'Seu pedido foi feito com sucesso',
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 15.0),
+                              child: Text(
+                                'Seu pedido foi feito com sucesso',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: const Color(0xFFFF7700),
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                            ),
+                            Text(
+                              ' Obrigado por escolher nosso serviço.',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Poppins',
-                                    color: const Color(0xFFFF7700),
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
                                                 .bodyMediumFamily),
                                   ),
                             ),
-                          ),
-                          Text(
-                            ' Obrigado por escolher nosso serviço.',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Align(

@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/search_item/search_item_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -8,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
@@ -360,508 +362,639 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             : null,
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
-            child: Stack(
-              children: [
-                if (_model.searchInputTextController.text == '')
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Stack(
                       children: [
-                        Stack(
-                          children: [
-                            if ((_model.searchInputTextFocusNode?.hasFocus ??
-                                    false) ==
-                                false)
-                              SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
+                        if (_model.searchInputTextController.text == '')
+                          SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Stack(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 10.0),
-                                      child: SizedBox(
-                                        width: double.infinity,
-                                        height: 100.0,
-                                        child: CarouselSlider(
-                                          items: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/770/600',
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/885/600',
-                                                width: 539.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/417/600',
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/406/600',
-                                                width: 300.0,
-                                                height: 200.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ],
-                                          carouselController:
-                                              _model.carouselController ??=
-                                                  CarouselController(),
-                                          options: CarouselOptions(
-                                            initialPage: 1,
-                                            viewportFraction: 0.95,
-                                            disableCenter: true,
-                                            enlargeCenterPage: true,
-                                            enlargeFactor: 0.25,
-                                            enableInfiniteScroll: true,
-                                            scrollDirection: Axis.horizontal,
-                                            autoPlay: false,
-                                            onPageChanged: (index, _) => _model
-                                                .carouselCurrentIndex = index,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 30.0),
-                                      child:
-                                          StreamBuilder<List<ProductsRecord>>(
-                                        stream: queryProductsRecord(
-                                          queryBuilder: (productsRecord) =>
-                                              productsRecord.where(
-                                            'product_is_active',
-                                            isEqualTo: true,
-                                          ),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
+                                    if ((_model.searchInputTextFocusNode
+                                                ?.hasFocus ??
+                                            false) ==
+                                        false)
+                                      SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 0.0, 10.0),
                                               child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          List<ProductsRecord>
-                                              wrapProductsRecordList =
-                                              snapshot.data!;
-                                          return Wrap(
-                                            spacing: 5.0,
-                                            runSpacing: 5.0,
-                                            alignment: WrapAlignment.start,
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.start,
-                                            direction: Axis.horizontal,
-                                            runAlignment: WrapAlignment.start,
-                                            verticalDirection:
-                                                VerticalDirection.down,
-                                            clipBehavior: Clip.none,
-                                            children: List.generate(
-                                                wrapProductsRecordList.length,
-                                                (wrapIndex) {
-                                              final wrapProductsRecord =
-                                                  wrapProductsRecordList[
-                                                      wrapIndex];
-                                              return Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        5.0, 5.0, 5.0, 5.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                      'productPage',
-                                                      queryParameters: {
-                                                        'productRef':
-                                                            serializeParam(
-                                                          wrapProductsRecord
-                                                              .reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: 182.0,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
+                                                width: double.infinity,
+                                                height: () {
+                                                  if (MediaQuery.sizeOf(context)
+                                                          .width <
+                                                      kBreakpointSmall) {
+                                                    return 100.0;
+                                                  } else if (MediaQuery.sizeOf(
+                                                              context)
+                                                          .width <
+                                                      kBreakpointMedium) {
+                                                    return 125.0;
+                                                  } else if (MediaQuery.sizeOf(
+                                                              context)
+                                                          .width <
+                                                      kBreakpointLarge) {
+                                                    return 150.0;
+                                                  } else {
+                                                    return 250.0;
+                                                  }
+                                                }(),
+                                                child: CarouselSlider(
+                                                  items: [
+                                                    ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8.0),
+                                                      child: Image.network(
+                                                        'https://images.unsplash.com/photo-1599785209758-243af93bd074?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxOHx8Y3VwY2FrZXxlbnwwfHx8fDE3MDA4Mjk1NDl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  10.0,
-                                                                  10.0,
-                                                                  10.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                            child:
-                                                                Image.network(
-                                                              wrapProductsRecord
-                                                                  .productLink,
-                                                              width: 387.0,
-                                                              height: 104.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw4fHxjdXBjYWtlfGVufDB8fHx8MTcwMDgyOTU0OXww&ixlib=rb-4.0.3&q=80&w=1080',
+                                                        width: 539.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        'https://images.unsplash.com/photo-1607478900766-efe13248b125?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw3fHxjdXBjYWtlfGVufDB8fHx8MTcwMDgyOTU0OXww&ixlib=rb-4.0.3&q=80&w=1080',
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        'https://images.unsplash.com/photo-1550617931-e17a7b70dce2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxMnx8Y3VwY2FrZXxlbnwwfHx8fDE3MDA4Mjk1NDl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                  carouselController: _model
+                                                          .carouselController ??=
+                                                      CarouselController(),
+                                                  options: CarouselOptions(
+                                                    initialPage: 1,
+                                                    viewportFraction: 0.95,
+                                                    disableCenter: true,
+                                                    enlargeCenterPage: true,
+                                                    enlargeFactor: 0.25,
+                                                    enableInfiniteScroll: true,
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    autoPlay: true,
+                                                    autoPlayAnimationDuration:
+                                                        const Duration(
+                                                            milliseconds: 800),
+                                                    autoPlayInterval: const Duration(
+                                                        milliseconds:
+                                                            (800 + 4000)),
+                                                    autoPlayCurve:
+                                                        Curves.linear,
+                                                    pauseAutoPlayInFiniteScroll:
+                                                        true,
+                                                    onPageChanged: (index, _) =>
+                                                        _model.carouselCurrentIndex =
+                                                            index,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 30.0),
+                                              child: StreamBuilder<
+                                                  List<ProductsRecord>>(
+                                                stream: queryProductsRecord(
+                                                  queryBuilder:
+                                                      (productsRecord) =>
+                                                          productsRecord.where(
+                                                    'product_is_active',
+                                                    isEqualTo: true,
+                                                  ),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          valueColor:
+                                                              AlwaysStoppedAnimation<
+                                                                  Color>(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        10.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Text(
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<ProductsRecord>
+                                                      wrapProductsRecordList =
+                                                      snapshot.data!;
+                                                  return Wrap(
+                                                    spacing: 5.0,
+                                                    runSpacing: 5.0,
+                                                    alignment:
+                                                        WrapAlignment.start,
+                                                    crossAxisAlignment:
+                                                        WrapCrossAlignment
+                                                            .start,
+                                                    direction: Axis.horizontal,
+                                                    runAlignment:
+                                                        WrapAlignment.start,
+                                                    verticalDirection:
+                                                        VerticalDirection.down,
+                                                    clipBehavior: Clip.none,
+                                                    children: List.generate(
+                                                        wrapProductsRecordList
+                                                            .length,
+                                                        (wrapIndex) {
+                                                      final wrapProductsRecord =
+                                                          wrapProductsRecordList[
+                                                              wrapIndex];
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    5.0,
+                                                                    5.0,
+                                                                    5.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'productPage',
+                                                              queryParameters: {
+                                                                'productRef':
+                                                                    serializeParam(
                                                                   wrapProductsRecord
-                                                                      .productName,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium,
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
                                                                 ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                              }.withoutNulls,
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width: 182.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
                                                                           10.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      if (functions.isCartItem(
-                                                                              wrapProductsRecord.reference,
-                                                                              FFAppState().cartItemList.toList()) ==
-                                                                          true) {
-                                                                        setState(
-                                                                            () {
-                                                                          FFAppState()
-                                                                              .updateCartItemListAtIndex(
-                                                                            functions.findIndexCart(wrapProductsRecord.reference,
-                                                                                FFAppState().cartItemList.toList())!,
-                                                                            (e) => e
-                                                                              ..incrementQuantity(1),
-                                                                          );
-                                                                        });
-                                                                      } else {
-                                                                        setState(
-                                                                            () {
-                                                                          FFAppState()
-                                                                              .addToCartItemList(CartItemTypeStruct(
-                                                                            cartItem:
-                                                                                wrapProductsRecord.reference,
-                                                                            quantity:
-                                                                                1,
-                                                                            valorTotal:
-                                                                                wrapProductsRecord.productValue,
-                                                                          ));
-                                                                        });
-                                                                      }
-
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Item foi adicionado à sacola',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              const Duration(milliseconds: 1000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .add_circle_outline_rounded,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      size:
-                                                                          24.0,
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                    child: Image
+                                                                        .network(
+                                                                      wrapProductsRecord
+                                                                          .productLink,
+                                                                      width:
+                                                                          387.0,
+                                                                      height:
+                                                                          104.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  context
-                                                                      .pushNamed(
-                                                                    'productPage',
-                                                                    queryParameters:
-                                                                        {
-                                                                      'productRef':
-                                                                          serializeParam(
-                                                                        wrapProductsRecord
-                                                                            .reference,
-                                                                        ParamType
-                                                                            .DocumentReference,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                  );
-                                                                },
-                                                                text:
-                                                                    'Sabe mais',
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  height: 33.0,
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          5.0,
-                                                                          0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: const Color(
-                                                                      0xFFFF7700),
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                      ),
-                                                                  elevation:
-                                                                      3.0,
-                                                                  borderSide:
-                                                                      const BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Text(
+                                                                          wrapProductsRecord
+                                                                              .productName,
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).bodyMedium,
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              InkWell(
+                                                                            splashColor:
+                                                                                Colors.transparent,
+                                                                            focusColor:
+                                                                                Colors.transparent,
+                                                                            hoverColor:
+                                                                                Colors.transparent,
+                                                                            highlightColor:
+                                                                                Colors.transparent,
+                                                                            onTap:
+                                                                                () async {
+                                                                              if (functions.isCartItem(wrapProductsRecord.reference, FFAppState().cartItemList.toList()) == true) {
+                                                                                setState(() {
+                                                                                  FFAppState().updateCartItemListAtIndex(
+                                                                                    functions.findIndexCart(wrapProductsRecord.reference, FFAppState().cartItemList.toList())!,
+                                                                                    (e) => e..incrementQuantity(1),
+                                                                                  );
+                                                                                });
+                                                                              } else {
+                                                                                setState(() {
+                                                                                  FFAppState().addToCartItemList(CartItemTypeStruct(
+                                                                                    cartItem: wrapProductsRecord.reference,
+                                                                                    quantity: 1,
+                                                                                    valorTotal: wrapProductsRecord.productValue,
+                                                                                  ));
+                                                                                });
+                                                                              }
+
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackBar(
+                                                                                  content: Text(
+                                                                                    'Item foi adicionado à sacola',
+                                                                                    style: TextStyle(
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                    ),
+                                                                                  ),
+                                                                                  duration: const Duration(milliseconds: 1000),
+                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                            child:
+                                                                                Icon(
+                                                                              Icons.add_circle_outline_rounded,
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              size: 24.0,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          context
+                                                                              .pushNamed(
+                                                                            'productPage',
+                                                                            queryParameters:
+                                                                                {
+                                                                              'productRef': serializeParam(
+                                                                                wrapProductsRecord.reference,
+                                                                                ParamType.DocumentReference,
+                                                                              ),
+                                                                            }.withoutNulls,
+                                                                          );
+                                                                        },
+                                                                        text:
+                                                                            'Sabe mais',
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          height:
+                                                                              33.0,
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              5.0,
+                                                                              0.0,
+                                                                              5.0,
+                                                                              0.0),
+                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              const Color(0xFFFF7700),
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                                color: Colors.white,
+                                                                                fontSize: 14.0,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                              ),
+                                                                          elevation:
+                                                                              3.0,
+                                                                          borderSide:
+                                                                              const BorderSide(
+                                                                            color:
+                                                                                Colors.transparent,
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             10.0,
                                                                             0.0),
-                                                                child: RichText(
-                                                                  textScaleFactor:
-                                                                      MediaQuery.of(
-                                                                              context)
-                                                                          .textScaleFactor,
-                                                                  text:
-                                                                      TextSpan(
-                                                                    children: [
-                                                                      TextSpan(
-                                                                        text:
-                                                                            'R\$',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
-                                                                      ),
-                                                                      TextSpan(
-                                                                        text: wrapProductsRecord
-                                                                            .productValue
-                                                                            .toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              fontWeight: FontWeight.w800,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                            ),
-                                                                      )
-                                                                    ],
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        child:
+                                                                            RichText(
+                                                                          textScaleFactor:
+                                                                              MediaQuery.of(context).textScaleFactor,
+                                                                          text:
+                                                                              TextSpan(
+                                                                            children: [
+                                                                              TextSpan(
+                                                                                text: 'R\$',
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                    ),
+                                                                              ),
+                                                                              TextSpan(
+                                                                                text: wrapProductsRecord.productValue.toString(),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                      fontWeight: FontWeight.w800,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                    ),
+                                                                              )
+                                                                            ],
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                                ),
+                                                                          ),
                                                                         ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ),
+                                                                ],
                                                               ),
-                                                            ],
+                                                            ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }),
-                                          );
-                                        },
+                                                        ),
+                                                      );
+                                                    }),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
                                   ],
                                 ),
-                              ),
-                          ],
-                        ),
+                              ],
+                            ),
+                          ),
+                        if (_model.searchInputTextController.text != '')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 60.0),
+                            child: Builder(
+                              builder: (context) {
+                                final searchResults =
+                                    _model.simpleSearchResults.toList();
+                                return SingleChildScrollView(
+                                  primary: false,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children:
+                                        List.generate(searchResults.length,
+                                            (searchResultsIndex) {
+                                      final searchResultsItem =
+                                          searchResults[searchResultsIndex];
+                                      return Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: SearchItemWidget(
+                                              key: Key(
+                                                  'Keydgn_${searchResultsIndex}_of_${searchResults.length}'),
+                                              totalCounter: 1,
+                                              productLink:
+                                                  searchResultsItem.productLink,
+                                              productName:
+                                                  searchResultsItem.productName,
+                                              productValue: searchResultsItem
+                                                  .productValue,
+                                              carItemRef:
+                                                  searchResultsItem.reference,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    }),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                       ],
                     ),
                   ),
-                if (_model.searchInputTextController.text != '')
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
-                    child: Builder(
-                      builder: (context) {
-                        final searchResults =
-                            _model.simpleSearchResults.toList();
-                        return SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: List.generate(searchResults.length,
-                                (searchResultsIndex) {
-                              final searchResultsItem =
-                                  searchResults[searchResultsIndex];
-                              return Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: SearchItemWidget(
-                                      key: Key(
-                                          'Keydgn_${searchResultsIndex}_of_${searchResults.length}'),
-                                      totalCounter: 1,
-                                      productLink:
-                                          searchResultsItem.productLink,
-                                      productName:
-                                          searchResultsItem.productName,
-                                      productValue:
-                                          searchResultsItem.productValue,
-                                      carItemRef: searchResultsItem.reference,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }),
+                ),
+              ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+                tablet: false,
+              ))
+                Align(
+                  alignment: const AlignmentDirectional(0.00, 1.00),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(0.00, 1.00),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                           ),
-                        );
-                      },
-                    ),
+                          alignment: const AlignmentDirectional(0.00, 0.00),
+                          child: Align(
+                            alignment: const AlignmentDirectional(0.00, 0.00),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: const Color(0xFFFF7700),
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.home,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('HomePage');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('searchPage');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.cartPlus,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('cart');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.thList,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('ordersPage');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const Icon(
+                                    Icons.account_circle_sharp,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('profile');
+                                  },
+                                ),
+                              ].divide(const SizedBox(width: 40.0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),

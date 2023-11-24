@@ -16,6 +16,8 @@ import 'index.dart';
 
 import 'backend/stripe/payment_manager.dart';
 
+import '/backend/firebase_dynamic_links/firebase_dynamic_links.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   usePathUrlStrategy();
@@ -109,6 +111,10 @@ class _MyAppState extends State<MyApp> {
       ),
       themeMode: _themeMode,
       routerConfig: _router,
+      builder: (_, child) => DynamicLinksHandler(
+        router: _router,
+        child: child!,
+      ),
     );
   }
 }
@@ -241,7 +247,7 @@ class _NavBarPageState extends State<NavBarPage> {
                     size: currentIndex == 2 ? 24.0 : 24.0,
                   ),
                   Text(
-                    'Cart',
+                    'Sacola',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: currentIndex == 2

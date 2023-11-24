@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 import '/auth/base_auth_user_provider.dart';
@@ -11,6 +12,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
+export '/backend/firebase_dynamic_links/firebase_dynamic_links.dart'
+    show generateCurrentPageLink;
 
 const kTransitionInfoKey = '__transition_info__';
 
@@ -71,8 +74,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const EntrarWidget(),
+      errorBuilder: (context, state) => _RouteErrorBuilder(
+        state: state,
+        child: appStateNotifier.loggedIn ? const NavBarPage() : const EntrarWidget(),
+      ),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -120,25 +125,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               params.isEmpty ? const NavBarPage(initialPage: 'cart') : const CartWidget(),
         ),
         FFRoute(
-          name: 'paymentPage',
-          path: '/paymentPage',
-          builder: (context, params) => const PaymentPageWidget(),
-        ),
-        FFRoute(
           name: 'searchPage',
           path: '/searchPage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'searchPage')
               : const SearchPageWidget(),
         ),
         FFRoute(
-          name: 'favoritePage',
-          path: '/favoritePage',
-          builder: (context, params) => const FavoritePageWidget(),
-        ),
-        FFRoute(
           name: 'ordersPage',
           path: '/ordersPage',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'ordersPage')
               : const OrdersPageWidget(),
@@ -146,24 +143,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'orderItems',
           path: '/orderItems',
-          builder: (context, params) => OrderItemsWidget(
-            orderRef: params.getParam('orderRef', ParamType.DocumentReference,
-                false, ['users', 'Orders']),
+          requireAuth: true,
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: OrderItemsWidget(
+              orderRef: params.getParam('orderRef', ParamType.DocumentReference,
+                  false, ['users', 'Orders']),
+            ),
           ),
         ),
         FFRoute(
           name: 'successPage',
           path: '/successPage',
+          requireAuth: true,
           builder: (context, params) => const SuccessPageWidget(),
         ),
         FFRoute(
           name: 'failedPage',
           path: '/failedPage',
+          requireAuth: true,
           builder: (context, params) => const FailedPageWidget(),
         ),
         FFRoute(
           name: 'profile',
           path: '/profile',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'profile')
               : const ProfileWidget(),
@@ -171,6 +175,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'profileEdit',
           path: '/profileEdit',
+          requireAuth: true,
           builder: (context, params) => const ProfileEditWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
@@ -394,6 +399,33 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+}
+
+class _RouteErrorBuilder extends StatefulWidget {
+  const _RouteErrorBuilder({
+    required this.state,
+    required this.child,
+  });
+
+  final GoRouterState state;
+  final Widget child;
+
+  @override
+  State<_RouteErrorBuilder> createState() => _RouteErrorBuilderState();
+}
+
+class _RouteErrorBuilderState extends State<_RouteErrorBuilder> {
+  @override
+  void initState() {
+    super.initState();
+    // Handle erroneous links from Firebase Dynamic Links.
+    if (widget.state.location.startsWith('/link?request_ip_version')) {
+      SchedulerBinding.instance.addPostFrameCallback((_) => context.go('/'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 class RootPageContext {

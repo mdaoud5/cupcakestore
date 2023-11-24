@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/search_item/search_item_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
@@ -86,35 +88,17 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: SafeArea(
               top: true,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Align(
-                      alignment: const AlignmentDirectional(-1.00, 0.00),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 10.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.safePop();
-                              },
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 36.0,
-                              ),
-                            ),
-                          ),
-                          Align(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(-1.00, -1.00),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Align(
                             alignment: const AlignmentDirectional(0.00, 0.00),
                             child: Container(
                               width: 266.0,
@@ -139,237 +123,223 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Align(
-                      alignment: const AlignmentDirectional(0.00, 1.00),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 0.0, 12.0, 20.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 52.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: const Color(0xFFFF7700),
-                              width: 1.0,
-                            ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.00, 1.00),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 20.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 52.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          borderRadius: BorderRadius.circular(12.0),
+                          border: Border.all(
+                            color: const Color(0xFFFF7700),
+                            width: 1.0,
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Padding(
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4.0, 0.0, 4.0, 0.0),
+                                        child: Icon(
+                                          Icons.search_rounded,
+                                          color: Color(0xFF8B9BA8),
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4.0, 0.0, 4.0, 0.0),
-                                          child: Icon(
-                                            Icons.search_rounded,
-                                            color: Color(0xFF8B9BA8),
-                                            size: 24.0,
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 0.0, 0.0),
+                                          child: TextFormField(
+                                            controller: _model
+                                                .searchTextFieldController,
+                                            focusNode:
+                                                _model.searchTextFieldFocusNode,
+                                            onChanged: (_) =>
+                                                EasyDebounce.debounce(
+                                              '_model.searchTextFieldController',
+                                              const Duration(milliseconds: 100),
+                                              () async {
+                                                safeSetState(() {
+                                                  _model.simpleSearchResults =
+                                                      TextSearch(
+                                                    searchPageProductsRecordList
+                                                        .map(
+                                                          (record) =>
+                                                              TextSearchItem
+                                                                  .fromTerms(
+                                                                      record, [
+                                                            record.productName]),
+                                                        )
+                                                        .toList(),
+                                                  )
+                                                          .search(_model
+                                                              .searchTextFieldController
+                                                              .text)
+                                                          .map((r) => r.object)
+                                                          .toList();
+                                                });
+                                              },
+                                            ),
+                                            obscureText: false,
+                                            decoration: const InputDecoration(
+                                              hintText: 'Pesquisar...',
+                                              enabledBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              errorBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedErrorBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: const Color(0xFF95A1AC),
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                            validator: _model
+                                                .searchTextFieldControllerValidator
+                                                .asValidator(context),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: TextFormField(
-                                              controller: _model
-                                                  .searchTextFieldController,
-                                              focusNode: _model
-                                                  .searchTextFieldFocusNode,
-                                              onChanged: (_) =>
-                                                  EasyDebounce.debounce(
-                                                '_model.searchTextFieldController',
-                                                const Duration(milliseconds: 100),
-                                                () async {
-                                                  safeSetState(() {
-                                                    _model.simpleSearchResults =
-                                                        TextSearch(
-                                                      searchPageProductsRecordList
-                                                          .map(
-                                                            (record) =>
-                                                                TextSearchItem
-                                                                    .fromTerms(
-                                                                        record,
-                                                                        [
-                                                                  record
-                                                                      .productName]),
-                                                          )
-                                                          .toList(),
-                                                    )
-                                                            .search(_model
-                                                                .searchTextFieldController
-                                                                .text)
-                                                            .map(
-                                                                (r) => r.object)
-                                                            .toList();
-                                                  });
-                                                },
-                                              ),
-                                              obscureText: false,
-                                              decoration: const InputDecoration(
-                                                hintText: 'Pesquisar...',
-                                                enabledBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(4.0),
-                                                    topRight:
-                                                        Radius.circular(4.0),
-                                                  ),
-                                                ),
-                                                focusedBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(4.0),
-                                                    topRight:
-                                                        Radius.circular(4.0),
-                                                  ),
-                                                ),
-                                                errorBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(4.0),
-                                                    topRight:
-                                                        Radius.circular(4.0),
-                                                  ),
-                                                ),
-                                                focusedErrorBorder:
-                                                    UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(4.0),
-                                                    topRight:
-                                                        Radius.circular(4.0),
-                                                  ),
-                                                ),
-                                              ),
-                                              style:
+                                      ),
+                                      if (_model.searchTextFieldController
+                                                  .text !=
+                                              '')
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.00, 0.00),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              setState(() {
+                                                _model.searchTextFieldController
+                                                    ?.clear();
+                                              });
+                                            },
+                                            text: 'Limpar',
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                      .primaryBackground,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
                                                       .override(
-                                                        fontFamily: 'Open Sans',
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmallFamily,
                                                         color:
-                                                            const Color(0xFF95A1AC),
-                                                        fontSize: 14.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
+                                                            const Color(0xFFFF7700),
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMediumFamily),
+                                                                    .titleSmallFamily),
                                                       ),
-                                              validator: _model
-                                                  .searchTextFieldControllerValidator
-                                                  .asValidator(context),
+                                              elevation: 3.0,
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFFF7700),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         ),
-                                        if (_model.searchTextFieldController
-                                                    .text !=
-                                                '')
-                                          Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                setState(() {
-                                                  _model
-                                                      .searchTextFieldController
-                                                      ?.clear();
-                                                });
-                                              },
-                                              text: 'Limpar',
-                                              options: FFButtonOptions(
-                                                height: 40.0,
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color:
-                                                              const Color(0xFFFF7700),
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: const BorderSide(
-                                                  color: Color(0xFFFF7700),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Padding(
+                  ),
+                  Expanded(
+                    child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
                       child: Builder(
@@ -379,6 +349,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                   _model.simpleSearchResults.toList())
                               .toList();
                           return SingleChildScrollView(
+                            primary: false,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -412,8 +383,120 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                         },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  if (responsiveVisibility(
+                    context: context,
+                    phone: false,
+                    tablet: false,
+                  ))
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, 1.00),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: 100.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.home,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('HomePage');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: const Color(0xFFFF7700),
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('searchPage');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.cartPlus,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('cart');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.thList,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('ordersPage');
+                                  },
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.white,
+                                  borderRadius: 50.0,
+                                  borderWidth: 0.0,
+                                  buttonSize: 60.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  hoverColor: const Color(0xFFFF7700),
+                                  icon: const Icon(
+                                    Icons.account_circle_sharp,
+                                    color: Colors.white,
+                                    size: 32.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed('profile');
+                                  },
+                                ),
+                              ].divide(const SizedBox(width: 40.0)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
               ),
             ),
           ),

@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>cupcakestore.com</string>
+        <string>cupcake_store</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>cupcakestore</string>
+        <string>com.mycompany.cupcakestore</string>
         </array>
         </dict>
     </array>
