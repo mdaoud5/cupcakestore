@@ -164,7 +164,7 @@ class _SearchItemWidgetState extends State<SearchItemWidget> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Item foi adicionado à sacola',
+                                          'Item foi adicionado ao carrinho',
                                           style: TextStyle(
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,

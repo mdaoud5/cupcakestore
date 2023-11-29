@@ -186,9 +186,12 @@ class _OrderItemsWidgetState extends State<OrderItemsWidget> {
                                       TextSpan(
                                         text: valueOrDefault<String>(
                                           dateTimeFormat(
-                                              'dd/mm/yyyy  H:mm',
-                                              orderItemsOrdersRecord
-                                                  .orderCreatedTime),
+                                            'dd/mm/yyyy  H:mm',
+                                            orderItemsOrdersRecord
+                                                .orderCreatedTime,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
                                           '22/10/2023',
                                         ),
                                         style: const TextStyle(),

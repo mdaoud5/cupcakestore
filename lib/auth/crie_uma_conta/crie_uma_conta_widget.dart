@@ -92,7 +92,7 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                   alignment: const AlignmentDirectional(0.00, -1.00),
                   child: Form(
                     key: _model.formKey,
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.disabled,
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -543,6 +543,8 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
                                         validator: _model
                                             .passwordControllerValidator
                                             .asValidator(context),
@@ -564,7 +566,7 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                         obscureText:
                                             !_model.passwordConfirmVisibility,
                                         decoration: InputDecoration(
-                                          labelText: 'Confire Senha',
+                                          labelText: 'Confira a Senha',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium,
@@ -635,6 +637,8 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
                                         minLines: 1,
+                                        keyboardType:
+                                            TextInputType.visiblePassword,
                                         validator: _model
                                             .passwordConfirmControllerValidator
                                             .asValidator(context),
@@ -703,7 +707,7 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                                     style: TextStyle(),
                                                   ),
                                                   TextSpan(
-                                                    text: 'Termos & Condiçoes',
+                                                    text: 'Termos & Condições',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -755,6 +759,12 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         if (_model.checkboxValue == true) {
+                                          if (_model.formKey.currentState ==
+                                                  null ||
+                                              !_model.formKey.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
                                           GoRouter.of(context)
                                               .prepareAuthEvent();
                                           if (_model.passwordController.text !=
@@ -764,7 +774,7 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                                 .showSnackBar(
                                               const SnackBar(
                                                 content: Text(
-                                                  'Passwords don\'t match!',
+                                                  'As senhas não são iguais',
                                                 ),
                                               ),
                                             );
@@ -793,10 +803,33 @@ class _CrieUmaContaWidgetState extends State<CrieUmaContaWidget> {
                                                     .celularController.text,
                                                 cpf: int.tryParse(
                                                     _model.cpfController.text),
+                                                userType: 'customer',
                                               ));
+
+                                          await authManager
+                                              .sendEmailVerification();
 
                                           context.pushNamedAuth(
                                               'Entrar', context.mounted);
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Aceite os Termos e Condições para utilizar o app.',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .info,
+                                                ),
+                                              ),
+                                              duration:
+                                                  const Duration(milliseconds: 1000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                            ),
+                                          );
                                         }
                                       },
                                       text: 'Criar',

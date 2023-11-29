@@ -110,10 +110,12 @@ class FirebaseAuthManager extends AuthManager
   }) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        const SnackBar(
+            content: Text(
+                'Aconteceu algum erro com o servidor. Verifique se o e-mail digitado já está cadastrado.')),
       );
       return null;
     }
@@ -183,8 +185,9 @@ class FirebaseAuthManager extends AuthManager
             .update(() => phoneAuthManager.triggerOnCodeSent = false);
       } else if (phoneAuthManager.phoneAuthError != null) {
         final e = phoneAuthManager.phoneAuthError!;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error: ${e.message!}'),
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Aconteceu algum erro com o servidor. Verifique se o e-mail digitado já está cadastrado.'),
         ));
         phoneAuthManager.update(() => phoneAuthManager.phoneAuthError = null);
       }
@@ -288,10 +291,12 @@ class FirebaseAuthManager extends AuthManager
       return userCredential == null
           ? null
           : CupcakeStoreFirebaseUser.fromUserCredential(userCredential);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.message!}')),
+        const SnackBar(
+            content: Text(
+                'Aconteceu algum erro com o servidor. Verifique se o e-mail digitado já está cadastrado.')),
       );
       return null;
     }

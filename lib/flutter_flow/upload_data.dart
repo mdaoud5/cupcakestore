@@ -88,7 +88,7 @@ Future<List<SelectedFile>?> selectMediaWithSourceBottomSheet({
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                 child: ListTile(
                   title: Text(
-                    'Choose Source',
+                    'Escolher fonte.',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.getFont(
                       pickerFontFamily,
@@ -105,27 +105,27 @@ Future<List<SelectedFile>?> selectMediaWithSourceBottomSheet({
             ],
             if (allowPhoto && allowVideo) ...[
               createUploadMediaListTile(
-                'Gallery (Photo)',
+                'Galeria de Fotos',
                 MediaSource.photoGallery,
               ),
               const Divider(),
               createUploadMediaListTile(
-                'Gallery (Video)',
+                'Galeria de Vídeo',
                 MediaSource.videoGallery,
               ),
             ] else if (allowPhoto)
               createUploadMediaListTile(
-                'Gallery',
+                'Galeria.',
                 MediaSource.photoGallery,
               )
             else
               createUploadMediaListTile(
-                'Gallery',
+                'Galeria.',
                 MediaSource.videoGallery,
               ),
             if (!kIsWeb) ...[
               const Divider(),
-              createUploadMediaListTile('Camera', MediaSource.camera),
+              createUploadMediaListTile('Câmera', MediaSource.camera),
               const Divider(),
             ],
             const SizedBox(height: 10),
@@ -230,8 +230,8 @@ bool validateFileFormat(String filePath, BuildContext context) {
   }
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
-    ..showSnackBar(SnackBar(
-      content: Text('Invalid file format: ${mime(filePath)}'),
+    ..showSnackBar(const SnackBar(
+      content: Text('Formato de arquivo inválido.'),
     ));
   return false;
 }

@@ -106,9 +106,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
+                      constraints: const BoxConstraints(
+                        maxWidth: 500.0,
+                      ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         boxShadow: [
@@ -222,6 +226,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 60.0,
+                          constraints: const BoxConstraints(
+                            maxWidth: 500.0,
+                          ),
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -288,6 +295,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 60.0,
+                          constraints: const BoxConstraints(
+                            maxWidth: 500.0,
+                          ),
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,

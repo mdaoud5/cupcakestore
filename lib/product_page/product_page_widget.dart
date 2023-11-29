@@ -198,9 +198,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                               'https://images.unsplash.com/photo-1603532648955-039310d9ed75?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw2fHxjdXBjYWtlfGVufDB8fHx8MTY5OTAxNjUxMnww&ixlib=rb-4.0.3&q=80&w=1080',
                                             ),
                                             width: double.infinity,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.25,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -552,7 +549,7 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              'O produto foi adicionado à sacola',
+                                              'O produto foi adicionado ao carrinho',
                                               style: TextStyle(
                                                 color:
                                                     FlutterFlowTheme.of(context)

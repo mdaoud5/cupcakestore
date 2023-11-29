@@ -19,11 +19,11 @@ class ProfileEditModel extends FlutterFlowModel<ProfileEditWidget> {
   String? Function(BuildContext, String?)? nomeComletoControllerValidator;
   String? _nomeComletoControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp('^((\\b[A-zÀ-ú\']{2,40}\\b)\\s*){2,}\$').hasMatch(val)) {
-      return 'Insere seu nome completo, por favor.';
+      return 'Insira seu nome completo.';
     }
     return null;
   }
@@ -34,13 +34,13 @@ class ProfileEditModel extends FlutterFlowModel<ProfileEditWidget> {
   String? Function(BuildContext, String?)? celularControllerValidator;
   String? _celularControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp(
             '^\\(?(?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\\)? ?(?:[2-8]|9[0-9])[0-9]{3}\\-?[0-9]{4}\$')
         .hasMatch(val)) {
-      return 'Numéro de celular invalido';
+      return 'Numéro de celular inválido';
     }
     return null;
   }
@@ -51,11 +51,11 @@ class ProfileEditModel extends FlutterFlowModel<ProfileEditWidget> {
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
   String? _emailAddressControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Email invalido';
+      return 'Email inválido';
     }
     return null;
   }

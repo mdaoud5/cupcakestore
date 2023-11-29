@@ -13,11 +13,11 @@ class EntrarModel extends FlutterFlowModel<EntrarWidget> {
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
   String? _emailAddressControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Email inserido não é valido';
+      return 'O e-mail inserido é inválido';
     }
     return null;
   }
@@ -29,7 +29,7 @@ class EntrarModel extends FlutterFlowModel<EntrarWidget> {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   String? _passwordControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     return null;

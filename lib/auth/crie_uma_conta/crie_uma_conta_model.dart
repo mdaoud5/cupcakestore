@@ -13,11 +13,11 @@ class CrieUmaContaModel extends FlutterFlowModel<CrieUmaContaWidget> {
   String? Function(BuildContext, String?)? nomeComletoControllerValidator;
   String? _nomeComletoControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp('^((\\b[A-zÀ-ú\']{2,40}\\b)\\s*){2,}\$').hasMatch(val)) {
-      return 'Insere seu nome completo!';
+      return 'Insira seu nome completo!';
     }
     return null;
   }
@@ -28,13 +28,13 @@ class CrieUmaContaModel extends FlutterFlowModel<CrieUmaContaWidget> {
   String? Function(BuildContext, String?)? cpfControllerValidator;
   String? _cpfControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp(
             '^([0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}|[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2})\$')
         .hasMatch(val)) {
-      return 'CPF não é valido';
+      return 'CPF inválido';
     }
     return null;
   }
@@ -45,13 +45,13 @@ class CrieUmaContaModel extends FlutterFlowModel<CrieUmaContaWidget> {
   String? Function(BuildContext, String?)? celularControllerValidator;
   String? _celularControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp(
             '^\\(?(?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\\)? ?(?:[2-8]|9[0-9])[0-9]{3}\\-?[0-9]{4}\$')
         .hasMatch(val)) {
-      return 'DD+seu numero, no espacos';
+      return 'Número com DDD, sem espaços';
     }
     return null;
   }
@@ -62,11 +62,11 @@ class CrieUmaContaModel extends FlutterFlowModel<CrieUmaContaWidget> {
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
   String? _emailAddressControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'E-mail não é valido';
+      return 'E-mail inválido';
     }
     return null;
   }
@@ -78,11 +78,11 @@ class CrieUmaContaModel extends FlutterFlowModel<CrieUmaContaWidget> {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   String? _passwordControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (val.length < 6) {
-      return 'Requires at least 6 characters.';
+      return 'insira no mínimo seis caracteres';
     }
 
     return null;
@@ -96,11 +96,11 @@ class CrieUmaContaModel extends FlutterFlowModel<CrieUmaContaWidget> {
   String? _passwordConfirmControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Field is required';
+      return 'Campo obrigatório';
     }
 
     if (val.length < 6) {
-      return 'Requires at least 6 characters.';
+      return 'insira no mínimo seis caracteres';
     }
 
     return null;

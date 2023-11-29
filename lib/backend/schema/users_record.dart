@@ -54,6 +54,11 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get dataDeNacimento => _dataDeNacimento;
   bool hasDataDeNacimento() => _dataDeNacimento != null;
 
+  // "user_type" field.
+  String? _userType;
+  String get userType => _userType ?? '';
+  bool hasUserType() => _userType != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -63,6 +68,7 @@ class UsersRecord extends FirestoreRecord {
     _phoneNumber = snapshotData['phone_number'] as String?;
     _cpf = castToType<int>(snapshotData['cpf']);
     _dataDeNacimento = snapshotData['data_de_nacimento'] as DateTime?;
+    _userType = snapshotData['user_type'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -107,6 +113,7 @@ Map<String, dynamic> createUsersRecordData({
   String? phoneNumber,
   int? cpf,
   DateTime? dataDeNacimento,
+  String? userType,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,6 +125,7 @@ Map<String, dynamic> createUsersRecordData({
       'phone_number': phoneNumber,
       'cpf': cpf,
       'data_de_nacimento': dataDeNacimento,
+      'user_type': userType,
     }.withoutNulls,
   );
 
@@ -136,7 +144,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.cpf == e2?.cpf &&
-        e1?.dataDeNacimento == e2?.dataDeNacimento;
+        e1?.dataDeNacimento == e2?.dataDeNacimento &&
+        e1?.userType == e2?.userType;
   }
 
   @override
@@ -148,7 +157,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.createdTime,
         e?.phoneNumber,
         e?.cpf,
-        e?.dataDeNacimento
+        e?.dataDeNacimento,
+        e?.userType
       ]);
 
   @override

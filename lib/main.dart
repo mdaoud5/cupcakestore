@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Cupcake Store',
+      title: 'CupcakeStore',
       localizationsDelegates: const [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -100,7 +100,9 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: _locale,
-      supportedLocales: const [Locale('en', '')],
+      supportedLocales: const [
+        Locale('pt'),
+      ],
       theme: ThemeData(
         brightness: Brightness.light,
         scrollbarTheme: const ScrollbarThemeData(),
@@ -247,7 +249,7 @@ class _NavBarPageState extends State<NavBarPage> {
                     size: currentIndex == 2 ? 24.0 : 24.0,
                   ),
                   Text(
-                    'Sacola',
+                    'Carrinho',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: currentIndex == 2
@@ -297,7 +299,7 @@ class _NavBarPageState extends State<NavBarPage> {
                     size: currentIndex == 4 ? 24.0 : 24.0,
                   ),
                   Text(
-                    'Prfil',
+                    'Perfil',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: currentIndex == 4

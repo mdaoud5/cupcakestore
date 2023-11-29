@@ -131,44 +131,46 @@ class _OrdersPageWidgetState extends State<OrdersPageWidget> {
                                 ),
                               );
                             }
-                            List<OrdersRecord> columnOrdersRecordList =
+                            List<OrdersRecord> listViewOrdersRecordList =
                                 snapshot.data!;
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: List.generate(
-                                  columnOrdersRecordList.length, (columnIndex) {
-                                final columnOrdersRecord =
-                                    columnOrdersRecordList[columnIndex];
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listViewOrdersRecordList.length,
+                              itemBuilder: (context, listViewIndex) {
+                                final listViewOrdersRecord =
+                                    listViewOrdersRecordList[listViewIndex];
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
                                       child: wrapWithModel(
                                         model: _model.orderCompModels1.getModel(
-                                          columnOrdersRecord.reference.id,
-                                          columnIndex,
+                                          listViewOrdersRecord.reference.id,
+                                          listViewIndex,
                                         ),
                                         updateCallback: () => setState(() {}),
                                         child: OrderCompWidget(
                                           key: Key(
-                                            'Key08j_${columnOrdersRecord.reference.id}',
+                                            'Key08j_${listViewOrdersRecord.reference.id}',
                                           ),
                                           orderNumber:
-                                              columnOrdersRecord.orderNumber,
+                                              listViewOrdersRecord.orderNumber,
                                           orderValue:
-                                              columnOrdersRecord.orderValue,
+                                              listViewOrdersRecord.orderValue,
                                           orderStatus:
-                                              columnOrdersRecord.orderStatus,
-                                          placingTime: columnOrdersRecord
+                                              listViewOrdersRecord.orderStatus,
+                                          placingTime: listViewOrdersRecord
                                               .orderCreatedTime!,
                                           orderRef:
-                                              columnOrdersRecord.reference,
+                                              listViewOrdersRecord.reference,
                                         ),
                                       ),
                                     ),
                                   ],
                                 );
-                              }),
+                              },
                             );
                           },
                         ),
@@ -214,44 +216,46 @@ class _OrdersPageWidgetState extends State<OrdersPageWidget> {
                                 ),
                               );
                             }
-                            List<OrdersRecord> columnOrdersRecordList =
+                            List<OrdersRecord> listViewOrdersRecordList =
                                 snapshot.data!;
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: List.generate(
-                                  columnOrdersRecordList.length, (columnIndex) {
-                                final columnOrdersRecord =
-                                    columnOrdersRecordList[columnIndex];
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listViewOrdersRecordList.length,
+                              itemBuilder: (context, listViewIndex) {
+                                final listViewOrdersRecord =
+                                    listViewOrdersRecordList[listViewIndex];
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
                                       child: wrapWithModel(
                                         model: _model.orderCompModels2.getModel(
-                                          columnOrdersRecord.reference.id,
-                                          columnIndex,
+                                          listViewOrdersRecord.reference.id,
+                                          listViewIndex,
                                         ),
                                         updateCallback: () => setState(() {}),
                                         child: OrderCompWidget(
                                           key: Key(
-                                            'Keyfcr_${columnOrdersRecord.reference.id}',
+                                            'Keyfcr_${listViewOrdersRecord.reference.id}',
                                           ),
                                           orderNumber:
-                                              columnOrdersRecord.orderNumber,
+                                              listViewOrdersRecord.orderNumber,
                                           orderValue:
-                                              columnOrdersRecord.orderValue,
+                                              listViewOrdersRecord.orderValue,
                                           orderStatus:
-                                              columnOrdersRecord.orderStatus,
-                                          placingTime: columnOrdersRecord
+                                              listViewOrdersRecord.orderStatus,
+                                          placingTime: listViewOrdersRecord
                                               .orderCreatedTime!,
                                           orderRef:
-                                              columnOrdersRecord.reference,
+                                              listViewOrdersRecord.reference,
                                         ),
                                       ),
                                     ),
                                   ],
                                 );
-                              }),
+                              },
                             );
                           },
                         ),

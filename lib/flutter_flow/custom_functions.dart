@@ -140,8 +140,10 @@ double calculateDeleveryFee(
 
   if (distance < 2) {
     return 5;
-  } else {
+  } else if (distance < 10 && distance > 2) {
     return double.parse((5 + 1.5 * distance).toStringAsFixed(2));
+  } else {
+    return 0;
   }
 }
 

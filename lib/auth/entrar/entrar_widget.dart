@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/components/resend_email_verification/resend_email_verification_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -82,7 +83,7 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                       alignment: const AlignmentDirectional(0.00, -1.00),
                       child: Form(
                         key: _model.formKey,
-                        autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -280,7 +281,7 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                             obscureText:
                                                 !_model.passwordVisibility,
                                             decoration: InputDecoration(
-                                              labelText: 'senha',
+                                              labelText: 'Senha',
                                               labelStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .labelMedium
@@ -377,6 +378,12 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                             0.0, 0.0, 0.0, 16.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            if (_model.formKey.currentState ==
+                                                    null ||
+                                                !_model.formKey.currentState!
+                                                    .validate()) {
+                                              return;
+                                            }
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
 
@@ -391,8 +398,48 @@ class _EntrarWidgetState extends State<EntrarWidget> {
                                               return;
                                             }
 
-                                            context.pushNamedAuth(
-                                                'HomePage', context.mounted);
+                                            if (currentUserEmailVerified) {
+                                              context.pushNamedAuth(
+                                                  'HomePage', context.mounted);
+                                            } else {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                barrierColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          ResendEmailVerificationWidget(
+                                                        email: _model
+                                                            .emailAddressController
+                                                            .text,
+                                                        password: _model
+                                                            .passwordController
+                                                            .text,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            }
                                           },
                                           text: 'Sign In',
                                           options: FFButtonOptions(
